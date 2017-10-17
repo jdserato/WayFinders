@@ -12,19 +12,20 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="739.0" prefWidth="1356.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<VBox fx:id="vbAll" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="739.0" prefWidth="1356.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Pane fx:id="pBusSchedule" prefHeight="0.0" prefWidth="1356.0" visible="false">
          <children>
             <TableView fx:id="tblSchedule" focusTraversable="false" layoutX="124.0" layoutY="51.0" prefHeight="470.0" prefWidth="1102.0">
               <columns>
-                  <TableColumn fx:id="tcBusCompany" prefWidth="291.0" text="Bus Company" />
-                  <TableColumn fx:id="tcType" prefWidth="156.0" text="Type" />
-                  <TableColumn fx:id="tcDestination" prefWidth="311.0" text="Destination" />
-                  <TableColumn fx:id="tcDeparture" prefWidth="93.0" text="Departure" />
-                  <TableColumn fx:id="tcLastTrip" prefWidth="85.0" text="Last Trip" />
+                  <TableColumn fx:id="tcBay" prefWidth="49.0" text="Bay No." />
+                  <TableColumn fx:id="tcBusCompany" prefWidth="203.0" text="Bus Company" />
+                  <TableColumn fx:id="tcType" prefWidth="144.0" text="Type" />
+                  <TableColumn fx:id="tcDestination" prefWidth="293.0" text="Destination" />
+                  <TableColumn fx:id="tcDeparture" prefWidth="133.0" text="Departure" />
+                  <TableColumn fx:id="tcLastTrip" prefWidth="117.0" text="Last Trip" />
                   <TableColumn fx:id="tcTrips" text="No. of Trip" />
-                  <TableColumn fx:id="tcBus" prefWidth="85.0" text="No. of Bus" />
+                  <TableColumn fx:id="tcBus" prefWidth="82.0" text="No. of Bus" />
               </columns>
             </TableView>
             <Label fx:id="lblHeader" layoutX="517.0" layoutY="10.0" text="BUS SCHEDULE - CENTER WING">
@@ -54,11 +55,54 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="pBusRoutesAndFares" prefHeight="788.0" prefWidth="1356.0">
+      <Pane fx:id="pBusRoutesAndFares" prefHeight="742.0" prefWidth="1356.0" visible="false">
          <children>
-            <Label layoutX="590.0" layoutY="285.0" text="Enter Bus Routes and Fares here" visible="false" />
-            <ListView fx:id="lvDestination" layoutX="7.0" layoutY="4.0" prefHeight="576.0" prefWidth="278.0" />
-            <ListView fx:id="lvDestination1" layoutX="295.0" layoutY="4.0" prefHeight="576.0" prefWidth="278.0" />
+            <HBox prefHeight="594.0" prefWidth="1360.0" spacing="20.0">
+               <children>
+                  <ListView fx:id="lvDestination" onMouseClicked="#handleDestinationClicked" prefHeight="576.0" prefWidth="278.0" />
+                  <ListView fx:id="lvCompany" onMouseClicked="#handleCompanyClicked" prefHeight="576.0" prefWidth="278.0" />
+                  <VBox fx:id="vbData" opacity="0.91" prefHeight="594.0" prefWidth="742.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label text="Destination" />
+                              <TextField fx:id="tfDestination" editable="false" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label text="Company" />
+                              <TextField fx:id="tfCompany" editable="false" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label text="Type" />
+                              <TextField fx:id="tfType" editable="false" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label text="Wing Area" />
+                              <TextField fx:id="tfWingArea" editable="false" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label text="Bay Number" />
+                              <TextField fx:id="tfBayNumber" editable="false" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label text="Maximum Fare" />
+                              <TextField fx:id="tfFare" editable="false" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children></Pane>
       <Pane fx:id="pBusTerminal" prefHeight="0.0" prefWidth="1356.0" visible="false">
          <children>

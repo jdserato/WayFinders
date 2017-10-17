@@ -17,7 +17,8 @@ public class Main extends Application {
         primaryStage.setTitle("SBT Directory System");
         primaryStage.setFullScreen(true);
         primaryStage.setAlwaysOnTop(true);
-        primaryStage.setScene(new Scene(root, 768, 617));
+        Scene scene = new Scene(root, 768, 617);
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 

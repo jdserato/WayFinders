@@ -4,11 +4,20 @@ package sample;
  * Created by Serato, Jay Vince on October 12, 2017.
  */
 public class Bus {
-    private String busCompany, type, destination, departure, lastTrip;
-    private int trips, buses;
+    private Company busCompany;
+    private String type;
+    private String destination;
+    private String departure;
+    private String lastTrip;
 
-    public Bus(String busCompany, String type, String destination, String departure, String lastTrip, int trips, int buses) {
+    private String wingArea;
+    private int trips, buses, bayNumber, fares;
+
+    public Bus(int bayNumber, Company busCompany, String type, String destination, String departure, String lastTrip, int trips, int buses, int fares, String wingArea) {
         this.busCompany = busCompany;
+        this.bayNumber = bayNumber;
+        this.fares = fares;
+        this.wingArea = wingArea;
         this.type = type;
         this.destination = destination;
         this.departure = departure;
@@ -17,11 +26,35 @@ public class Bus {
         this.buses = buses;
     }
 
-    public String getBusCompany() {
+    public String getWingArea() {
+        return wingArea;
+    }
+
+    public void setWingArea(String wingArea) {
+        this.wingArea = wingArea;
+    }
+
+    public int getBayNumber() {
+        return bayNumber;
+    }
+
+    public void setBayNumber(int bayNumber) {
+        this.bayNumber = bayNumber;
+    }
+
+    public int getFares() {
+        return fares;
+    }
+
+    public void setFares(int fares) {
+        this.fares = fares;
+    }
+
+    public Company getBusCompany() {
         return busCompany;
     }
 
-    public void setBusCompany(String busCompany) {
+    public void setBusCompany(Company busCompany) {
         this.busCompany = busCompany;
     }
 
