@@ -44,20 +44,20 @@ public class Controller implements Initializable{
             pBusRoutesAndFares.setPrefHeight(0);
             pBusTerminal.setPrefHeight(0);
             pBusSchedule.setPrefHeight(1100);
-            btnBusSchedule.setImage(new Image("sample/Bus-Schedule.png"));
+            btnBusSchedule.setImage(new Image("sample/Bus-Schedule_c.png"));
             if (btnBusRoutesAndFaresClicked) {
                 btnBusRoutesAndFaresClicked = false;
                 pBusRoutesAndFares.setVisible(false);
-                btnRoutesAndFares.setImage(new Image("sample/Fares-and-Routes_GS.png"));
+                btnRoutesAndFares.setImage(new Image("sample/Fares-and-Routes_uc.png"));
             } else if (btnBusTerminalClicked) {
                 btnBusTerminalClicked = false;
                 pBusTerminal.setVisible(false);
-                btnBusTerminal.setImage(new Image("sample/Bus-Terminal_GS.png"));
+                btnBusTerminal.setImage(new Image("sample/Bus-Terminal_uc.png"));
             }
         } else { // if the button is activated, then we deactivate it
             btnBusScheduleClicked = false;
             pBusSchedule.setVisible(false);
-            btnBusSchedule.setImage(new Image("sample/Bus-Schedule_GS.png"));
+            btnBusSchedule.setImage(new Image("sample/Bus-Schedule_uc.png"));
         }
     }
 
@@ -69,20 +69,20 @@ public class Controller implements Initializable{
             pBusSchedule.setPrefHeight(0);
             pBusTerminal.setPrefHeight(0);
             pBusRoutesAndFares.setPrefHeight(1100);
-            btnRoutesAndFares.setImage(new Image("sample/Fares-and-Routes.png"));
+            btnRoutesAndFares.setImage(new Image("sample/Fares-and-Routes_c.png"));
             if (btnBusScheduleClicked) {
                 btnBusScheduleClicked = false;
                 pBusSchedule.setVisible(false);
-                btnBusSchedule.setImage(new Image("sample/Bus-Schedule_GS.png"));
+                btnBusSchedule.setImage(new Image("sample/Bus-Schedule_uc.png"));
             } else if (btnBusTerminalClicked) {
                 btnBusTerminalClicked = false;
                 pBusTerminal.setVisible(false);
-                btnBusTerminal.setImage(new Image("sample/Bus-Terminal_GS.png"));
+                btnBusTerminal.setImage(new Image("sample/Bus-Terminal_uc.png"));
             }
         } else { // if Button Routes and Fares was clicked, then we deactivate it
             btnBusRoutesAndFaresClicked = false;
             pBusRoutesAndFares.setVisible(false);
-            btnRoutesAndFares.setImage(new Image("sample/Fares-and-Routes_GS.png"));
+            btnRoutesAndFares.setImage(new Image("sample/Fares-and-Routes_uc.png"));
         }
     }
 
@@ -94,20 +94,20 @@ public class Controller implements Initializable{
             pBusSchedule.setPrefHeight(0);
             pBusRoutesAndFares.setPrefHeight(0);
             pBusTerminal.setPrefHeight(1100);
-            btnBusTerminal.setImage(new Image("sample/Bus-Terminal.png"));
+            btnBusTerminal.setImage(new Image("sample/Bus-Terminal_c.png"));
             if (btnBusScheduleClicked) {
                 btnBusScheduleClicked = false;
                 pBusSchedule.setVisible(false);
-                btnBusSchedule.setImage(new Image("sample/Bus-Schedule_GS.png"));
+                btnBusSchedule.setImage(new Image("sample/Bus-Schedule_uc.png"));
             } else if (btnBusRoutesAndFaresClicked) {
                 btnBusRoutesAndFaresClicked = false;
                 pBusRoutesAndFares.setVisible(false);
-                btnRoutesAndFares.setImage(new Image("sample/Fares-and-Routes_GS.png"));
+                btnRoutesAndFares.setImage(new Image("sample/Fares-and-Routes_uc.png"));
             }
         } else { // if Bus Terminal was clicked, then we deactivate it
             btnBusTerminalClicked = false;
             pBusTerminal.setVisible(false);
-            btnBusTerminal.setImage(new Image("sample/Bus-Terminal_GS.png"));
+            btnBusTerminal.setImage(new Image("sample/Bus-Terminal_uc.png"));
         }
     }
 
