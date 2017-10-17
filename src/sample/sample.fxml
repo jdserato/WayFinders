@@ -114,17 +114,17 @@
             <Region disable="true" focusTraversable="true" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <ImageView fx:id="btnBusSchedule" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#handleBtnBusScheduleClick" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Bus-Schedule_GS.png" />
+                  <Image url="@Bus-Schedule.png" />
                </image>
             </ImageView>
             <ImageView fx:id="btnRoutesAndFares" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#handleBtnRoutesAndFaresClick" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Fares-and-Routes_GS.png" />
+                  <Image url="@Fares-and-Routes.png" />
                </image>
             </ImageView>
             <ImageView fx:id="btnBusTerminal" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#handleBtnBusTerminalClick" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Bus-Terminal_GS.png" />
+                  <Image url="@Bus-Terminal.png" />
                </image>
             </ImageView>
             <Region disable="true" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
