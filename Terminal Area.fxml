@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9">
+  <tabs>
+    <Tab text="Terminal Area Lower Level">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="368.0" fitWidth="582.0" layoutX="7.0" layoutY="2.0">
+                     <image>
+                        <Image url="@rockaway-map.gif" />
+                     </image>
+                  </ImageView>
+                  <ChoiceBox layoutX="436.0" layoutY="14.0" prefWidth="150.0" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Terminal Area UpperLevel ">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="364.0" fitWidth="594.0" layoutX="3.0" layoutY="4.0">
+                     <image>
+                        <Image url="@UpperLevel.png" />
+                     </image>
+                  </ImageView>
+                  <ChoiceBox layoutX="436.0" layoutY="14.0" prefWidth="150.0" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>
