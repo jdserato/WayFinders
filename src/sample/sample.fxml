@@ -55,7 +55,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="pBusRoutesAndFares" prefHeight="742.0" prefWidth="1356.0" visible="false">
+      <Pane fx:id="pBusRoutesAndFares" prefHeight="0.0" prefWidth="1336.0" visible="false">
          <children>
             <HBox prefHeight="594.0" prefWidth="1360.0" spacing="20.0">
                <children>
@@ -103,12 +103,15 @@
                   </VBox>
                </children>
             </HBox>
-         </children></Pane>
-      <Pane fx:id="pBusTerminal" prefHeight="0.0" prefWidth="1356.0" visible="false">
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin></Pane>
+      <Pane fx:id="pBusTerminal" prefHeight="752.0" prefWidth="1356.0" visible="false">
          <children>
-            <ImageView fx:id="imgDirectory" fitWidth="950" fitHeight="650" translateX="200">
+            <ImageView fx:id="imgDirectory" fitHeight="568.0" fitWidth="918.0" layoutX="20.0" translateX="200">
                <image>
-                  <Image url="@terminal.png"/>
+                  <Image url="@terminal.png" />
                </image>
             </ImageView>
          </children>
