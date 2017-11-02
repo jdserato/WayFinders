@@ -21,17 +21,17 @@ import static javafx.scene.layout.BackgroundRepeat.NO_REPEAT;
 
 public class Controller implements Initializable{
 
-    public ImageView btnBusSchedule, btnRoutesAndFares, btnBusTerminal;
+    public ImageView btnBusSchedule, btnRoutesAndFares, btnBusTerminal, btnTermArrow, imgDirectory;
     public TableView<Bus> tblSchedule;
     public TableColumn<Bus, String> tcType, tcBusCompany, tcDestination, tcDeparture, tcLastTrip, tcTrips, tcBus, tcBay;
-    public Label lblLeft, lblRight, lblHeader;
+    public Label lblLeft, lblRight, lblHeader, lblTermArrow;
     public Pane pBusSchedule, pBusRoutesAndFares, pBusTerminal;
     public ListView<String> lvDestination;
     public ListView<Company> lvCompany;
     public VBox vbAll, vbData;
     public TextField tfDestination, tfCompany, tfFare, tfType, tfWingArea, tfBayNumber;
 
-    private boolean btnBusScheduleClicked, btnBusRoutesAndFaresClicked, btnBusTerminalClicked;
+    private boolean btnBusScheduleClicked, btnBusRoutesAndFaresClicked, btnBusTerminalClicked, btnTermArrowUp;
     private int busSelection = 2;
     private ObservableList<Bus> rightWing, centerWing, leftWing, allBuses = FXCollections.observableArrayList();
     private String destChosen = "";
@@ -44,20 +44,20 @@ public class Controller implements Initializable{
             pBusRoutesAndFares.setPrefHeight(0);
             pBusTerminal.setPrefHeight(0);
             pBusSchedule.setPrefHeight(1100);
-            btnBusSchedule.setImage(new Image("sample/Bus-Schedule_c.png"));
+            btnBusSchedule.setImage(new Image("sample/res/Bus-Schedule_c.png"));
             if (btnBusRoutesAndFaresClicked) {
                 btnBusRoutesAndFaresClicked = false;
                 pBusRoutesAndFares.setVisible(false);
-                btnRoutesAndFares.setImage(new Image("sample/Fares-and-Routes_uc.png"));
+                btnRoutesAndFares.setImage(new Image("sample/res/Fares-and-Routes_uc.png"));
             } else if (btnBusTerminalClicked) {
                 btnBusTerminalClicked = false;
                 pBusTerminal.setVisible(false);
-                btnBusTerminal.setImage(new Image("sample/Bus-Terminal_uc.png"));
+                btnBusTerminal.setImage(new Image("sample/res/Bus-Terminal_uc.png"));
             }
         } else { // if the button is activated, then we deactivate it
             btnBusScheduleClicked = false;
             pBusSchedule.setVisible(false);
-            btnBusSchedule.setImage(new Image("sample/Bus-Schedule_uc.png"));
+            btnBusSchedule.setImage(new Image("sample/res/Bus-Schedule_uc.png"));
         }
     }
 
@@ -69,20 +69,20 @@ public class Controller implements Initializable{
             pBusSchedule.setPrefHeight(0);
             pBusTerminal.setPrefHeight(0);
             pBusRoutesAndFares.setPrefHeight(1100);
-            btnRoutesAndFares.setImage(new Image("sample/Fares-and-Routes_c.png"));
+            btnRoutesAndFares.setImage(new Image("sample/res/Fares-and-Routes_c.png"));
             if (btnBusScheduleClicked) {
                 btnBusScheduleClicked = false;
                 pBusSchedule.setVisible(false);
-                btnBusSchedule.setImage(new Image("sample/Bus-Schedule_uc.png"));
+                btnBusSchedule.setImage(new Image("sample/res/Bus-Schedule_uc.png"));
             } else if (btnBusTerminalClicked) {
                 btnBusTerminalClicked = false;
                 pBusTerminal.setVisible(false);
-                btnBusTerminal.setImage(new Image("sample/Bus-Terminal_uc.png"));
+                btnBusTerminal.setImage(new Image("sample/res/Bus-Terminal_uc.png"));
             }
         } else { // if Button Routes and Fares was clicked, then we deactivate it
             btnBusRoutesAndFaresClicked = false;
             pBusRoutesAndFares.setVisible(false);
-            btnRoutesAndFares.setImage(new Image("sample/Fares-and-Routes_uc.png"));
+            btnRoutesAndFares.setImage(new Image("sample/res/Fares-and-Routes_uc.png"));
         }
     }
 
@@ -94,20 +94,20 @@ public class Controller implements Initializable{
             pBusSchedule.setPrefHeight(0);
             pBusRoutesAndFares.setPrefHeight(0);
             pBusTerminal.setPrefHeight(1100);
-            btnBusTerminal.setImage(new Image("sample/Bus-Terminal_c.png"));
+            btnBusTerminal.setImage(new Image("sample/res/Bus-Terminal_c.png"));
             if (btnBusScheduleClicked) {
                 btnBusScheduleClicked = false;
                 pBusSchedule.setVisible(false);
-                btnBusSchedule.setImage(new Image("sample/Bus-Schedule_uc.png"));
+                btnBusSchedule.setImage(new Image("sample/res/Bus-Schedule_uc.png"));
             } else if (btnBusRoutesAndFaresClicked) {
                 btnBusRoutesAndFaresClicked = false;
                 pBusRoutesAndFares.setVisible(false);
-                btnRoutesAndFares.setImage(new Image("sample/Fares-and-Routes_uc.png"));
+                btnRoutesAndFares.setImage(new Image("sample/res/Fares-and-Routes_uc.png"));
             }
         } else { // if Bus Terminal was clicked, then we deactivate it
             btnBusTerminalClicked = false;
             pBusTerminal.setVisible(false);
-            btnBusTerminal.setImage(new Image("sample/Bus-Terminal_uc.png"));
+            btnBusTerminal.setImage(new Image("sample/res/Bus-Terminal_uc.png"));
         }
     }
 
@@ -162,12 +162,28 @@ public class Controller implements Initializable{
                 lblRight.setText("Center Wing");
                 lblHeader.setText("BUS SCHEDULE - LEFT WING");
         }
+    }
 
+    @FXML
+    public void handleTermArrowClicked() {
+        if (btnTermArrowUp) {
+            // TODO show second floor
+            //imgDirectory.setImage();
+            btnTermArrow.setRotate(180);
+            btnTermArrowUp = false;
+            lblTermArrow.setText("First Floor");
+        } else {
+            // show first floor
+            imgDirectory.setImage(new Image("sample//terminal.png"));
+            btnTermArrow.setRotate(0);
+            btnTermArrowUp = true;
+            lblTermArrow.setText("Second Floor");
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Image background = new Image("sample/Background.png", 1380, 780, false, true);
+        Image background = new Image("sample/res/Background.png", 1380, 780, false, true);
         vbAll.setBackground(new Background(new BackgroundImage(background, NO_REPEAT, NO_REPEAT, DEFAULT, BackgroundSize.DEFAULT)));
         // BUS SCHEDULE INITIALIZATION
         rightWing = FXCollections.observableArrayList(
