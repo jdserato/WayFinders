@@ -1,20 +1,17 @@
 package sample;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.beans.value.*;
+import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 import javafx.scene.layout.*;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.sql.*;
 
 import static javafx.scene.layout.BackgroundPosition.DEFAULT;
 import static javafx.scene.layout.BackgroundRepeat.NO_REPEAT;
@@ -174,11 +171,24 @@ public class Controller implements Initializable{
             lblTermArrow.setText("First Floor");
         } else {
             // show first floor
-            imgDirectory.setImage(new Image("sample//terminal.png"));
+            imgDirectory.setImage(new Image("sample/terminal.png"));
             btnTermArrow.setRotate(0);
             btnTermArrowUp = true;
             lblTermArrow.setText("Second Floor");
         }
+    }
+
+    private Connection connect() {
+        String url = "jdbc:sqlite:src/sample/db/bus.db";
+        Connection conn = null;
+
+        try {
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return conn;
     }
 
     @Override
@@ -186,50 +196,58 @@ public class Controller implements Initializable{
         Image background = new Image("sample/res/Background.png", 1380, 780, false, true);
         vbAll.setBackground(new Background(new BackgroundImage(background, NO_REPEAT, NO_REPEAT, DEFAULT, BackgroundSize.DEFAULT)));
         // BUS SCHEDULE INITIALIZATION
-        rightWing = FXCollections.observableArrayList(
-                new Bus(1, new Company("JEGANS"), "Ordinary", "Toledo/Pinamungajan", "4:00 am", "4:00 pm", 4, 5, 70, "Right Wing"),
-                new Bus(2, new Company("CALVO"), "Ordinary", "Toledo/Balamban", "3:00 am", "9:00 pm", 4, 32, 70, "Right Wing"),
-                new Bus(3, new Company("COROMINAS"), "Ordinary", "Balamban/Asturian/Tuburan/Toledo", "3:00 am", "6:00 pm", 3, 20, 90, "Right Wing"),
-                new Bus(4, new Company("CERES LINER"), "Aircon/Ordinary", "Balamban/Pinamungahan", "4:00 am", "7:00 pm", 4, 7, 75, "Right Wing"),
-                new Bus(4, new Company("CERES LINER"), "Aircon/Ordinary", "Toledo", "4:00 am", "7:00 pm", 4, 2, 60, "Right Wing"),
-                new Bus(5, new Company("GABE TRANSIT"), "Ordinary", "Toledo/Balamban", "5:00 am", "9:00 pm", 4, 8, 60, "Right Wing"),
-                new Bus(6, new Company("CANONEO"), "Ordinary", "Toledo", "9:00 am", "8:00 pm", 4, 5, 60, "Right Wing"));
 
-        centerWing = FXCollections.observableArrayList(
-                new Bus(1, new Company("JRK / SEPO"), "Ordinary", "Pinamungajan via Aloguinsan", "9:00 am", "6:00 pm", 1, 8, 70, "Center Wing"),
-                new Bus(2, new Company("CERES LINER"), "Aircon", "Bato via Barili", "4:00 am", "6:00 pm", 3, 12, 85, "Center Wing"),
-                new Bus(3, new Company("CERES LINER"), "Ordinary", "Bato via Barili", "1:00 am", "10:00 pm", 3, 38, 72, "Center Wing"),
-                new Bus(4, new Company("CERES LINER"), "Ordinary", "Moalboal", "-", "-", 4, 4, 107, "Center Wing"),
-                new Bus(4, new Company("CERES LINER"), "Ordinary", "Carcar", "-", "-", 7, 13, 40, "Center Wing"),
-                new Bus(5, new Company("CERES LINER"), "Ordinary", "Argao", "-", "-", 6, 15, 79, "Center Wing"),
-                new Bus(6, new Company("CERES LINER"), "Ordinary", "Alcoy", "-", "-", 4, 4, 100, "Center Wing"),
-                new Bus(7, new Company("CERES LINER"), "Ordinary", "Bato via Oslob", "-", "-", 3, 27, 138, "Center Wing"),
-                new Bus(8, new Company("CERES LINER"), "Aircon", "Argao", "7:00 am", "12:00 am", 5, 5, 83, "Center Wing"),
-                new Bus(9, new Company("CERES LINER"), "Aircon", "Bato/Oslob/Alcoy", "1:00 am", "12:00 am", 5, 5, 145, "Center Wing"),
-                new Bus(10, new Company("CERES LINER"), "Aircon", "Dumaguete", "6:00 am", "6:00 pm", 1, 9, 275, "Center Wing"),
-                new Bus(11, new Company("CERES LINER"), "Aircon", "Bacolod", "1:00 am", "-", 1, 2, 560, "Center Wing"),
-                new Bus(11, new Company("CERES LINER"), "Aircon", "Zamboanga", "2:00 pm", "-", 1, 1, 560, "Center Wing"),
-                new Bus(12, new Company("JHADE"), "Ordinary", "Aloguinsan via Pinamungajan", "4:30 am", "5:00 pm", 2, 6, 80, "Center Wing")
-        );
-        leftWing = FXCollections.observableArrayList(
-                new Bus(2, new Company("METROLINK [Weekdays]"), "Ordinary", "Bato/Barili", "4:00 am", "10:00 pm", 1, 10, 65, "Left Wing"),
-                new Bus(3, new Company("METROLINK [Weekends]"), "Ordinary", "Bato/Barili", "4:00 am", "10:00 pm", 2, 10, 65, "Left Wing"),
-                new Bus(4, new Company("SUNRAYS"), "Aircon/Ordinary", "Samboan/Oslob", "4:00 am", "8:30 pm", 2, 34, 143, "Left Wing"),
-                new Bus(5, new Company("SUNRAYS"), "Aircon/Ordinary", "Samboan Liloan Port", "4:00 am", "8:30 pm", 2, 34, 143, "Left Wing"),
-                new Bus(6, new Company("CHAN TRANSIT"), "Ordinary", "Dumanjug", "5:00 am", "11:00 pm", 2, 22, 75, "Left Wing"),
-                new Bus(7, new Company("JBH/BRITT"), "Ordinary", "Dumanjug/Barili", "6:00 am", "10:00 pm", 2, 9, 75, "Left Wing"),
-                new Bus(7, new Company("SOCORRO"), "Ordinary", "Dumanjug", "6:00 am", "6:00 pm", 3, 5, 75, "Left Wing"),
-                new Bus(8, new Company("BEFEL LINER"), "Ordinary", "Carcar", "6:00 am", "6:00 pm", 6, 1, 60, "Left Wing"),
-                new Bus(8, new Company("DOS HERMANOS"), "Ordinary", "Carcar", "6:00 am", "8:00 pm", 6, 3, 60, "Left Wing"),
-                new Bus(8, new Company("INDAY JEAN"), "Ordinary", "Carcar", "5:00 am", "7:00 pm", 4, 1, 60, "Left Wing"),
-                new Bus(9, new Company("ALLOWIE"), "Ordinary", "Sibonga", "6:00 am", "8:00 pm", 4, 5, 70, "Left Wing"),
-                new Bus(9, new Company("ANDREW LINER"), "Ordinary", "Sibonga", "5:00 am", "6:00 pm", 4, 2, 70, "Left Wing"),
-                new Bus(9, new Company("EDC"), "Ordinary", "Sibonga", "7:00 am", "7:00 pm", 2, 9, 70, "Left Wing"),
-                new Bus(9, new Company("JRK/SEPO"), "Ordinary", "Sibonga", "5:00 am", "8:00 pm", 2, 14, 70, "Left Wing"),
-                new Bus(9, new Company("PIONEER"), "Ordinary", "Sibonga", "4:00 am", "8:00 pm", 4, 10, 70, "Left Wing"),
-                new Bus(9, new Company("SKIPPER"), "Ordinary", "Sibonga", "5:00 am", "6:00 pm", 4, 3, 70, "Left Wing"),
-                new Bus(9, new Company("YEOMAN"), "Ordinary", "Sibonga", "5:00 am", "7:00 pm", 4, 10, 70, "Left Wing")
-        );
+        ArrayList<Bus> temp = new ArrayList<>();
+        String sql = "SELECT bay_num, company, type, destination, first_departure, last_trip, no_of_trips, no_of_buses, fare " +
+                "FROM bus_info " +
+                "WHERE wing_area = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt  = conn.prepareStatement(sql)){
+            pstmt.setString(1, "Right Wing");
+            ResultSet rs  = pstmt.executeQuery();
+
+            while (rs.next()) {
+                temp.add(new Bus(rs.getInt("bay_num"), new Company(rs.getString("company")), rs.getString("type"), rs.getString("destination"),
+                        rs.getString("first_departure"), rs.getString("last_trip"), rs.getInt("no_of_trips"), rs.getInt("no_of_buses"), rs.getInt("fare"), "Right Wing"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        rightWing = FXCollections.observableArrayList(temp);
+        temp.clear();
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt  = conn.prepareStatement(sql)){
+            pstmt.setString(1, "Center Wing");
+            ResultSet rs  = pstmt.executeQuery();
+
+            while (rs.next()) {
+                temp.add(new Bus(rs.getInt("bay_num"), new Company(rs.getString("company")), rs.getString("type"), rs.getString("destination"),
+                        rs.getString("first_departure"), rs.getString("last_trip"), rs.getInt("no_of_trips"), rs.getInt("no_of_buses"), rs.getInt("fare"), "Center Wing"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        centerWing = FXCollections.observableArrayList(temp);
+        temp.clear();
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt  = conn.prepareStatement(sql)){
+            pstmt.setString(1, "Left Wing");
+            ResultSet rs  = pstmt.executeQuery();
+
+            while (rs.next()) {
+                temp.add(new Bus(rs.getInt("bay_num"), new Company(rs.getString("company")), rs.getString("type"), rs.getString("destination"),
+                        rs.getString("first_departure"), rs.getString("last_trip"), rs.getInt("no_of_trips"), rs.getInt("no_of_buses"), rs.getInt("fare"), "Left Wing"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        leftWing = FXCollections.observableArrayList(temp);
 
         tcBay.setCellValueFactory(new PropertyValueFactory<>("bayNumber"));
         tcBusCompany.setCellValueFactory(new PropertyValueFactory<>("busCompany"));

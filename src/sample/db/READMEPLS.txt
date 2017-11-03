@@ -1,0 +1,1 @@
+File > Project Structure > Libraries > Green + button > choose sql jar (kaning naa sa db folder)
