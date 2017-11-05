@@ -12,6 +12,6 @@ public class Malabuyoc extends Municipality {
     }
 
     private Malabuyoc() {
-        super("Malabuyoc", 0, 0, null);
+        super("Malabuyoc", 0, 0, new Municipality[]{Alegria.getInstance(), Badian.getInstance(), Moalboal.getInstance(), Alcantara.getInstance(), Ronda.getInstance(), Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()}, Ginatilan.getInstance(), Alegria.getInstance());
     }
 }

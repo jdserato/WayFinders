@@ -12,6 +12,6 @@ public class Pinamungajan extends Municipality {
     }
 
     private Pinamungajan() {
-        super("Pinamungajan", 0, 0, null);
+        super("Pinamungajan", 80, 0, new Municipality[]{ToledoCity.getInstance()}, Aloguinsan.getInstance(), ToledoCity.getInstance());
     }
 }

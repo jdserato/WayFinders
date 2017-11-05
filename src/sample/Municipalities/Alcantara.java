@@ -12,6 +12,6 @@ public class Alcantara extends Municipality {
     }
 
     private Alcantara() {
-        super("Alcantara", 0, 0, null);
+        super("Alcantara", 0, 0, new Municipality[]{CarcarCity.getInstance(), Sibonga.getInstance(), Argao.getInstance()}, Ronda.getInstance(), Moalboal.getInstance());
     }
 }

@@ -12,6 +12,6 @@ public class CarcarCity extends Municipality {
     }
 
     private CarcarCity() {
-        super("CarcarCity", 0, 0, null);
+        super("Carcar City", 60, 60, null, Sibonga.getInstance(), Zamboanga.getInstance());
     }
 }

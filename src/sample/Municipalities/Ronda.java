@@ -12,6 +12,6 @@ public class Ronda extends Municipality {
     }
 
     private Ronda() {
-        super("Ronda", 0, 0, null);
+        super("Ronda", 0, 0, new Municipality[]{Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()}, Alcantara.getInstance(), Dumanjug.getInstance());
     }
 }

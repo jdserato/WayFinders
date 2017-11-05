@@ -13,6 +13,6 @@ public class Asturias extends Municipality {
     }
 
     private Asturias() {
-        super("Asturias", 0, 0, new Municipality[]{CebuCity.getInstance()});
+        super("Asturias", 80, 0, new Municipality[]{Balamban.getInstance()}, Tuburan.getInstance(), Balamban.getInstance());
     }
 }

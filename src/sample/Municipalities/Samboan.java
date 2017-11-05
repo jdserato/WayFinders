@@ -12,6 +12,6 @@ public class Samboan extends Municipality {
     }
 
     private Samboan() {
-        super("Samboan", 0, 0, null);
+        super("Samboan", 138, 145, SamboanVB.getInstance().getEncompassingMunicipality(), Santander.getInstance(), Ginatilan.getInstance());
     }
 }

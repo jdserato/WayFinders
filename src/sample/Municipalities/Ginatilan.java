@@ -12,6 +12,6 @@ public class Ginatilan extends Municipality {
     }
 
     private Ginatilan() {
-        super("Ginatilan", 0, 0, null);
+        super("Ginatilan", 0, 0, new Municipality[]{Malabuyoc.getInstance(), Alegria.getInstance(), Badian.getInstance(), Moalboal.getInstance(), Alcantara.getInstance(), Ronda.getInstance(), Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()}, Samboan.getInstance(), Malabuyoc.getInstance());
     }
 }

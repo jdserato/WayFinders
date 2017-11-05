@@ -12,6 +12,6 @@ public class Barili extends Municipality {
     }
 
     private Barili() {
-        super("Barili", 0, 0, null);
+        super("Barili", 0, 0, new Municipality[]{CarcarCity.getInstance()}, Aloguinsan.getInstance(), Dumanjug.getInstance());
     }
 }

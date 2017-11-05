@@ -12,6 +12,6 @@ public class Boljoon extends Municipality {
     }
 
     private Boljoon() {
-        super("Boljoon", 0, 0, null);
+        super("Boljoon", 0, 0, new Municipality[]{Alcoy.getInstance(), Dalaguete.getInstance(), Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance()}, Oslob.getInstance(), Alcoy.getInstance());
     }
 }

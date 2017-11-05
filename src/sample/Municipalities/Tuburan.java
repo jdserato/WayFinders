@@ -13,6 +13,6 @@ public class Tuburan extends Municipality {
     }
 
     private Tuburan() {
-        super("Tuburan", 0, 0, new Municipality[]{Asturias.getInstance(), Balamban.getInstance(), CebuCity.getInstance()});
+        super("Tuburan", 108, 0, new Municipality[]{Asturias.getInstance(), Balamban.getInstance()}, Asturias.getInstance(), Bacolod.getInstance());
     }
 }

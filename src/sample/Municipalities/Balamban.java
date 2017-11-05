@@ -13,6 +13,6 @@ public class Balamban extends Municipality {
     }
 
     private Balamban() {
-        super("Balamban", 0, 0, null);
+        super("Balamban", 80, 85, null, Asturias.getInstance(), ToledoCity.getInstance());
     }
 }

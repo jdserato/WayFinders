@@ -13,6 +13,6 @@ public class Bacolod extends Municipality{
     }
 
     private Bacolod() {
-        super("Bacolod", 0, 0, null);
+        super("Bacolod", 0, 560, null, Dumaguete.getInstance(), Tuburan.getInstance());
     }
 }

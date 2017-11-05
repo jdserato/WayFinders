@@ -12,6 +12,6 @@ public class Santander extends Municipality {
     }
 
     private Santander() {
-        super("Santander", 0, 0, null);
+        super("Santander", 0, 0, new Municipality[]{Oslob.getInstance(), Boljoon.getInstance(), Alcoy.getInstance(), Dalaguete.getInstance(), Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance()}, Samboan.getInstance(), Oslob.getInstance());
     }
 }

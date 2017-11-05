@@ -12,6 +12,6 @@ public class Aloguinsan extends Municipality {
     }
 
     private Aloguinsan() {
-        super("Aloguinsan", 0, 0, null);
+        super("Aloguinsan", 80, 0, new Municipality[]{CarcarCity.getInstance()}, Pinamungajan.getInstance(), Barili.getInstance());
     }
 }

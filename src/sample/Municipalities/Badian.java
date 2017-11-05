@@ -12,6 +12,6 @@ public class Badian extends Municipality {
     }
 
     private Badian() {
-        super("Badian", 0, 0, null);
+        super("Badian", 0, 0, new Municipality[]{Moalboal.getInstance(), Alcantara.getInstance(), Ronda.getInstance(), Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()}, Moalboal.getInstance(), Alegria.getInstance());
     }
 }

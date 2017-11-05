@@ -12,6 +12,6 @@ public class Dumanjug extends Municipality {
     }
 
     private Dumanjug() {
-        super("Dumanjug", 0, 0, null);
+        super("Dumanjug", 75, 0, new Municipality[]{Sibonga.getInstance(), CarcarCity.getInstance()}, Ronda.getInstance(), Dumanjug.getInstance());
     }
 }

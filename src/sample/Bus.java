@@ -4,16 +4,16 @@ package sample;
  * Created by Serato, Jay Vince on October 12, 2017.
  */
 public class Bus {
-    private Company busCompany;
+    private String busCompany;
     private String type;
-    private String destination;
+    private Municipality destination;
     private String departure;
     private String lastTrip;
 
     private String wingArea;
     private int trips, buses, bayNumber, fares;
 
-    public Bus(int bayNumber, Company busCompany, String type, String destination, String departure, String lastTrip, int trips, int buses, int fares, String wingArea) {
+    public Bus(int bayNumber, String busCompany, String type, Municipality destination, String departure, String lastTrip, int trips, int buses, int fares, String wingArea) {
         this.busCompany = busCompany;
         this.bayNumber = bayNumber;
         this.fares = fares;
@@ -50,11 +50,11 @@ public class Bus {
         this.fares = fares;
     }
 
-    public Company getBusCompany() {
+    public String getBusCompany() {
         return busCompany;
     }
 
-    public void setBusCompany(Company busCompany) {
+    public void setBusCompany(String busCompany) {
         this.busCompany = busCompany;
     }
 
@@ -66,11 +66,11 @@ public class Bus {
         this.type = type;
     }
 
-    public String getDestination() {
+    public Municipality getDestination() {
         return destination;
     }
 
-    public void setDestination(String destination) {
+    public void setDestination(Municipality destination) {
         this.destination = destination;
     }
 

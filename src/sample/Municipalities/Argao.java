@@ -12,6 +12,6 @@ public class Argao extends Municipality {
     }
 
     private Argao() {
-        super("Argao", 0, 0, null);
+        super("Argao", 79, 83, new Municipality[]{Sibonga.getInstance(), CarcarCity.getInstance()}, Dalaguete.getInstance(), Sibonga.getInstance());
     }
 }

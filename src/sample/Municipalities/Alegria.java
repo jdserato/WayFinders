@@ -12,6 +12,6 @@ public class Alegria extends Municipality {
     }
 
     private Alegria() {
-        super("Alegria", 0, 0, null);
+        super("Alegria", 0, 0, new Municipality[]{Badian.getInstance(), Moalboal.getInstance(), Alcantara.getInstance(), Ronda.getInstance(), Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()}, Badian.getInstance(), Malabuyoc.getInstance());
     }
 }

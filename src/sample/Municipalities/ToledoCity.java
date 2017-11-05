@@ -12,6 +12,6 @@ public class ToledoCity extends Municipality {
     }
 
     private ToledoCity() {
-        super("ToledoCity", 0, 0, new Municipality[]{CebuCity.getInstance()});
+        super("Toledo City", 60, 0, null, Pinamungajan.getInstance(), Balamban.getInstance());
     }
 }
