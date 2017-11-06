@@ -17,7 +17,7 @@
             <Font name="Governor" size="49.0" />
          </font>
       </Label>
-      <Pane fx:id="pMap" prefHeight="0.0" prefWidth="1340.0">
+      <Pane fx:id="pMap" prefHeight="0.0" prefWidth="1340.0" visible="false">
          <children>
             <ImageView fitHeight="635.0" fitWidth="393.0" layoutX="432.0" layoutY="33.0" opacity="0.7" pickOnBounds="true">
                <image>
@@ -302,7 +302,7 @@
             </Label>
          </children>
       </Pane>
-      <VBox fx:id="vbDetails" alignment="CENTER" prefHeight="797.0" prefWidth="1300.0" visible="false">
+      <VBox fx:id="vbDetails" alignment="CENTER" prefHeight="797.0" prefWidth="1300.0">
          <children>
             <HBox alignment="CENTER" prefHeight="104.0" prefWidth="1300.0">
                <children>
@@ -311,19 +311,17 @@
                         <Image url="@res/arrow_vert.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lPrev" onMouseClicked="#handlePrevClicked" text="PREV">
+                  <Label fx:id="lPrev" onMouseClicked="#handlePrevClicked" prefHeight="48.0" prefWidth="300.0" text="PREV">
                      <font>
                         <Font name="Governor" size="40.0" />
                      </font>
                   </Label>
-                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <Label fx:id="lDestination" alignment="TOP_LEFT" text="DESTINATION">
+                  <Label fx:id="lDestination" alignment="CENTER" prefWidth="575.0" text="DESTINATION" textAlignment="CENTER">
                      <font>
                         <Font name="Governor" size="53.0" />
                      </font>
                   </Label>
-                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <Label fx:id="lNext" onMouseClicked="#handleNextClicked" text="NEXT">
+                  <Label fx:id="lNext" alignment="CENTER_RIGHT" contentDisplay="RIGHT" onMouseClicked="#handleNextClicked" prefWidth="300.0" text="NEXT" textAlignment="RIGHT">
                      <font>
                         <Font name="Governor" size="40.0" />
                      </font>
@@ -339,20 +337,21 @@
                <children>
                   <VBox prefHeight="559.0" prefWidth="853.0">
                      <children>
-                        <TableView fx:id="tvBusDetails" prefHeight="651.0" prefWidth="798.0">
+                        <TableView fx:id="tvBusDetails" prefHeight="892.0" prefWidth="798.0">
                           <columns>
-                            <TableColumn fx:id="tcBusCompany" prefWidth="136.0" text="Bus Company" />
-                            <TableColumn fx:id="tcBusType" minWidth="0.0" prefWidth="104.0" text="Bus Type" />
-                              <TableColumn fx:id="tccLocation" minWidth="0.0" prefWidth="148.0" text="Location">
+                            <TableColumn fx:id="tcBusCompany" prefWidth="136.0" style="-fx-alignment: CENTER" text="Bus Company" />
+                            <TableColumn fx:id="tcBusType" minWidth="0.0" prefWidth="103.0" style="-fx-alignment: CENTER;" text="Bus Type" />
+                              <TableColumn fx:id="tccLocation" minWidth="0.0" prefWidth="142.0" text="Location">
                                  <columns>
-                                    <TableColumn fx:id="tcWingArea" prefWidth="75.0" text="Wing Area" />
-                                    <TableColumn fx:id="tcBayNumber" prefWidth="75.0" text="Bay Number" />
+                                    <TableColumn fx:id="tcWingArea" prefWidth="75.0" style="-fx-alignment: CENTER;" text="Wing Area" />
+                                    <TableColumn fx:id="tcBayNumber" prefWidth="75.0" style="-fx-alignment: CENTER;" text="Bay Number" />
                                  </columns>
                               </TableColumn>
-                              <TableColumn fx:id="tcDestination" prefWidth="211.0" text="Destination" />
-                              <TableColumn fx:id="tcFirstTrip" prefWidth="67.0" text="First Trip" />
-                              <TableColumn fx:id="tcLastTrip" prefWidth="75.0" text="Last Trip" />
-                              <TableColumn fx:id="tcBuses" prefWidth="56.0" text="Number &#10;of Buses" />
+                              <TableColumn fx:id="tcDestination" prefWidth="185.0" style="-fx-alignment: CENTER;" text="Destination" />
+                              <TableColumn fx:id="tcFirstTrip" prefWidth="69.0" style="-fx-alignment: CENTER;" text="First Trip" />
+                              <TableColumn fx:id="tcLastTrip" prefWidth="54.0" style="-fx-alignment: CENTER;" text="Last Trip" />
+                              <TableColumn fx:id="tcBuses" prefWidth="62.0" style="-fx-alignment: CENTER;" text="Number &#10;of Buses" />
+                              <TableColumn fx:id="tcMaxFare" prefWidth="45.0" style="-fx-alignment: CENTER;" text="Max. &#10;Fare" />
                           </columns>
                            <VBox.margin>
                               <Insets />
@@ -379,7 +378,7 @@
                                     </Label>
                                     <HBox alignment="TOP_CENTER" prefHeight="92.0" prefWidth="462.0" spacing="10.0">
                                        <children>
-                                          <VBox alignment="TOP_RIGHT" prefHeight="291.0" prefWidth="294.0" spacing="8.0">
+                                          <VBox alignment="TOP_RIGHT" prefHeight="291.0" prefWidth="294.0" spacing="3.0">
                                              <children>
                                                 <Label text="Total Number of Bus Companies">
                                                    <font>
@@ -402,13 +401,32 @@
                                                    </font>
                                                 </Label>
                                              </children>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" />
+                                             </HBox.margin>
                                           </VBox>
-                                          <VBox prefHeight="241.0" prefWidth="66.0" spacing="2.0">
+                                          <VBox prefHeight="241.0" prefWidth="66.0" spacing="3.0">
                                              <children>
-                                                <TextArea fx:id="taNumberOfBusCompanies" editable="false" prefHeight="35.0" prefWidth="231.0" VBox.vgrow="NEVER" />
-                                                <TextArea fx:id="taNumberOfBuses" editable="false" prefHeight="35.0" prefWidth="231.0" VBox.vgrow="NEVER" />
-                                                <TextArea fx:id="taFareAircon" editable="false" prefHeight="35.0" prefWidth="231.0" VBox.vgrow="NEVER" />
-                                                <TextArea fx:id="taFareOrdinary" editable="false" prefHeight="35.0" VBox.vgrow="NEVER" />
+                                                <TextField fx:id="taNumberOfBusCompanies" editable="false" maxHeight="-Infinity" prefHeight="1.0" prefWidth="231.0" VBox.vgrow="NEVER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="taNumberOfBuses" editable="false" maxHeight="-Infinity" prefHeight="1.0" prefWidth="231.0" VBox.vgrow="NEVER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="taFareAircon" editable="false" maxHeight="-Infinity" prefHeight="1.0" prefWidth="231.0" VBox.vgrow="NEVER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="taFareOrdinary" editable="false" maxHeight="-Infinity" prefHeight="1.0" VBox.vgrow="NEVER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
                                              </children>
                                              <HBox.margin>
                                                 <Insets />
@@ -439,7 +457,7 @@
                         </ImageView>
                         <ImageView fx:id="ivTerminalPath" fitHeight="370.0" fitWidth="470.0" layoutX="26.0" layoutY="84.0" pickOnBounds="true">
                            <image>
-                              <Image url="@res/Terminal%20Map/RW1.png" />
+                              <Image url="@res/Terminal%20Map/RW-1.png" />
                            </image>
                         </ImageView>
                      </children>

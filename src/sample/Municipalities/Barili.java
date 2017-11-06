@@ -4,7 +4,7 @@ package sample.Municipalities;/**
 
 import sample.Municipality;
 
-public class Barili extends Municipality {
+public class    Barili extends Municipality {
     private static Barili ourInstance = new Barili();
 
     public static Barili getInstance() {

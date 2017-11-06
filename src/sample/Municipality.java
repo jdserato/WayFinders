@@ -68,7 +68,6 @@ public class Municipality {
 
     public void setEncompassingMunicipality(Municipality[] encompassingMunicipality) {
         this.encompassingMunicipality = encompassingMunicipality;
-        System.out.println(encompassingMunicipality[0] + " has been established.");
     }
 
     public Municipality getLeftMun() {

@@ -12,6 +12,6 @@ public class Zamboanga extends Municipality {
     }
 
     private Zamboanga() {
-        super("Zamboanga", 0, 0, null, CarcarCity.getInstance(), Dumaguete.getInstance());
+        super("Zamboanga", 0, 560, null, CarcarCity.getInstance(), Dumaguete.getInstance());
     }
 }
