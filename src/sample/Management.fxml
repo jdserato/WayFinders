@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox alignment="CENTER" prefHeight="401.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Management_Controller">
+   <children>
+      <HBox fx:id="hbMainPane" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="75.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <HBox fx:id="hbEditBus" spacing="25.0">
+         <children>
+            <ComboBox fx:id="cbBus" prefWidth="175.0" promptText="Bus Company" />
+            <ComboBox fx:id="cbDestination" disable="true" prefWidth="175.0" promptText="Destination" />
+            <ComboBox fx:id="cbType" disable="true" prefWidth="175.0" promptText="Type" />
+            <Button fx:id="btnSearch" defaultButton="true" disable="true" mnemonicParsing="false" text="Search" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

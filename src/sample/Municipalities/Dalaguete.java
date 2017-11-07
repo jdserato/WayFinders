@@ -12,6 +12,6 @@ public class Dalaguete extends Municipality {
     }
 
     private Dalaguete() {
-        super("Dalaguete", 0, 0, new Municipality[]{Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance()}, Alcoy.getInstance(), Argao.getInstance());
+        super("Dalaguete", 100, 0, new Municipality[]{Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance()}, Alcoy.getInstance(), Argao.getInstance());
     }
 }

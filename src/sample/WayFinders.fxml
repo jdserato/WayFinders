@@ -260,7 +260,7 @@
                   <Image url="@res/Cebu%20Muns/Aloguinsan.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="ivBacolod" fitHeight="100.0" fitWidth="147.0" layoutX="477.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ivBacolod" fitHeight="100.0" fitWidth="147.0" layoutX="477.0" layoutY="135.0" onMouseClicked="#handleBacolodSelected" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@res/Cebu%20Muns/Bacolod.png" />
                </image>
@@ -348,9 +348,9 @@
                                  </columns>
                               </TableColumn>
                               <TableColumn fx:id="tcDestination" prefWidth="185.0" style="-fx-alignment: CENTER;" text="Destination" />
-                              <TableColumn fx:id="tcFirstTrip" prefWidth="69.0" style="-fx-alignment: CENTER;" text="First Trip" />
-                              <TableColumn fx:id="tcLastTrip" prefWidth="54.0" style="-fx-alignment: CENTER;" text="Last Trip" />
-                              <TableColumn fx:id="tcBuses" prefWidth="62.0" style="-fx-alignment: CENTER;" text="Number &#10;of Buses" />
+                              <TableColumn fx:id="tcFirstTrip" prefWidth="63.0" style="-fx-alignment: CENTER;" text="First Trip" />
+                              <TableColumn fx:id="tcLastTrip" prefWidth="66.0" style="-fx-alignment: CENTER;" text="Last Trip" />
+                              <TableColumn fx:id="tcTime" prefWidth="56.0" style="-fx-alignment: CENTER;" text="Time of&#10;Arrival" />
                               <TableColumn fx:id="tcMaxFare" prefWidth="45.0" style="-fx-alignment: CENTER;" text="Max. &#10;Fare" />
                           </columns>
                            <VBox.margin>
@@ -455,7 +455,7 @@
                               <Image url="@res/terminal.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="ivTerminalPath" fitHeight="370.0" fitWidth="470.0" layoutX="26.0" layoutY="84.0" pickOnBounds="true">
+                        <ImageView fx:id="ivTerminalPath" fitHeight="360.0" fitWidth="606.0" layoutX="2.0" layoutY="68.0" pickOnBounds="true">
                            <image>
                               <Image url="@res/Terminal%20Map/RW-1.png" />
                            </image>

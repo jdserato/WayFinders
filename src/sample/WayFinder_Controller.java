@@ -20,6 +20,7 @@ import sample.Municipalities.*;
 
 import java.net.URL;
 import java.sql.*;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import static javafx.scene.layout.BackgroundPosition.DEFAULT;
@@ -28,11 +29,11 @@ import static javafx.scene.layout.BackgroundRepeat.NO_REPEAT;
 /**
  * Created by Serato, Jay Vince on November 01, 2017.
  */
-public class WayFinder_Controller implements Initializable{
+public class WayFinder_Controller implements Initializable {
     public Pane pMap;
     public VBox vbMain, vbDetails;
     public TableView<Bus> tvBusDetails;
-    public TableColumn<Bus, String> tcBusCompany, tcBusType, tccLocation, tcWingArea, tcBayNumber, tcDestination, tcLastTrip, tcFirstTrip, tcBuses, tcMaxFare;
+    public TableColumn<Bus, String> tcBusCompany, tcBusType, tccLocation, tcWingArea, tcBayNumber, tcDestination, tcLastTrip, tcFirstTrip, tcTime, tcMaxFare;
     public TextField taNumberOfBusCompanies, taNumberOfBuses, taFareAircon, taFareOrdinary;
     public ImageView ivTuburan, ivAsturias, ivBalamban, ivToledoCity, ivPinamungajan, ivAloguinsan, ivBarili, ivDumanjug, ivRonda, ivAlcantara, ivMoalboal, ivBadian, ivAlegria, ivMalabuyoc, ivGinatilan, ivSamboan, ivOslob, ivBoljoon, ivAlcoy, ivDalaguete, ivArgao, ivSibonga, ivCarcarCity, ivZamboanga, ivBacolod, ivSantander, ivDumaguete;
     public Label lTuburan, lAsturias, lBalamban, lToledoCity, lPinamungajan, lAloguinsan, lBarili, lDumanjug, lRonda, lAlcantara, lMoalboal, lBadian, lAlegria, lMalabuyoc, lGinatilan, lSamboan, lOslob, lBoljoon, lAlcoy, lDalaguete, lArgao, lSibonga, lCarcarCity, lZamboanga, lBacolod, lSantander, lDumaguete;
@@ -42,46 +43,7 @@ public class WayFinder_Controller implements Initializable{
     private ObservableList<Municipality> municipalities = FXCollections.observableArrayList(AloguinsanVP.getInstance(), DumanjugVB.getInstance(), PinamungajanVA.getInstance(), SamboanVO.getInstance(), SamboanVB.getInstance(), Bacolod.getInstance(), Zamboanga.getInstance(), Dumaguete.getInstance(), Tuburan.getInstance(), Balamban.getInstance(), Asturias.getInstance(), Balamban.getInstance(), ToledoCity.getInstance(), Pinamungajan.getInstance(), Aloguinsan.getInstance(), Barili.getInstance(), Dumanjug.getInstance(), Ronda.getInstance(), Alcantara.getInstance(), Moalboal.getInstance(), Badian.getInstance(), Alegria.getInstance(), Malabuyoc.getInstance(), Ginatilan.getInstance(), Samboan.getInstance(), Santander.getInstance(), Oslob.getInstance(), Boljoon.getInstance(), Alcoy.getInstance(), Dalaguete.getInstance(), Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance());
 
     private ObservableList<Bus> qualifier = FXCollections.observableArrayList();
-    private ObservableList<Bus> buses = FXCollections.observableArrayList();/*FXCollections.observableArrayList(
-            new Bus(1, "JEGANS", "Ordinary", Pinamungajan.getInstance(), "4:00 am", "4:00 pm", 4, 5, 70, "Right Wing"), // TODO assure, deleted Toledo
-            new Bus(2, "CALVO", "Ordinary", ToledoCity.getInstance(), "3:00 am", "9:00 pm", 4, 32, 70, "Right Wing"), // TODO assure, deleted Balamban
-            new Bus(3, "COROMINAS", "Ordinary", Tuburan.getInstance(), "3:00 am", "6:00 pm", 3, 20, 90, "Right Wing"), // TODO assure, deleted Balamban/Asturias/Toledo
-            new Bus(4, "CERES LINER", "Aircon/Ordinary", Pinamungajan.getInstance(), "4:00 am", "7:00 pm", 4, 7, 75, "Right Wing"), // TODO assure, deleted Balamban
-            new Bus(4, "CERES LINER", "Aircon/Ordinary", ToledoCity.getInstance(), "4:00 am", "7:00 pm", 4, 2, 60, "Right Wing"),
-            new Bus(5, "GABE TRANSIT", "Ordinary", ToledoCity.getInstance(), "5:00 am", "9:00 pm", 4, 8, 60, "Right Wing"), // TODO assure, deleted Balamban
-            new Bus(6, "CANONEO", "Ordinary", ToledoCity.getInstance(), "9:00 am", "8:00 pm", 4, 5, 60, "Right Wing"),
-            new Bus(1, "JRK / SEPO", "Ordinary", PinamungajanVA.getInstance(), "9:00 am", "6:00 pm", 1, 8, 70, "Center Wing"),
-            new Bus(2, "CERES LINER", "Aircon", SamboanVB.getInstance(), "4:00 am", "6:00 pm", 3, 12, 85, "Center Wing"),
-            new Bus(3, "CERES LINER", "Ordinary", SamboanVB.getInstance(), "1:00 am", "10:00 pm", 3, 38, 72, "Center Wing"),
-            new Bus(4, "CERES LINER", "Ordinary", Moalboal.getInstance(), "-", "-", 4, 4, 107, "Center Wing"),
-            new Bus(4, "CERES LINER", "Ordinary", CarcarCity.getInstance(), "-", "-", 7, 13, 40, "Center Wing"),
-            new Bus(5, "CERES LINER", "Ordinary", Argao.getInstance(), "-", "-", 6, 15, 79, "Center Wing"),
-            new Bus(6, "CERES LINER", "Ordinary", Alcoy.getInstance(), "-", "-", 4, 4, 100, "Center Wing"),
-            new Bus(7, "CERES LINER", "Ordinary", SamboanVO.getInstance(), "-", "-", 3, 27, 138, "Center Wing"),
-            new Bus(8, "CERES LINER", "Aircon", Argao.getInstance(), "7:00 am", "12:00 am", 5, 5, 83, "Center Wing"),
-            new Bus(9, "CERES LINER", "Aircon", SamboanVO.getInstance(), "1:00 am", "12:00 am", 5, 5, 145, "Center Wing"), // TODO assure, deleted Oslob, Alcoy
-            new Bus(10, "CERES LINER", "Aircon", Dumaguete.getInstance(), "6:00 am", "6:00 pm", 1, 9, 275, "Center Wing"),
-            new Bus(11, "CERES LINER", "Aircon", Bacolod.getInstance(), "1:00 am", "-", 1, 2, 560, "Center Wing"),
-            new Bus(11, "CERES LINER", "Aircon", Zamboanga.getInstance(), "2:00 pm", "-", 1, 1, 560, "Center Wing"),
-            new Bus(12, "JHADE", "Ordinary", AloguinsanVP.getInstance(), "4:30 am", "5:00 pm", 2, 6, 80, "Center Wing"),
-            new Bus(2, "METROLINK [Weekdays]", "Ordinary", SamboanVB.getInstance(), "4:00 am", "10:00 pm", 1, 10, 65, "Left Wing"), // TODO assure, deleted Barili
-            new Bus(3, "METROLINK [Weekends]", "Ordinary", SamboanVB.getInstance(), "4:00 am", "10:00 pm", 2, 10, 65, "Left Wing"),
-            new Bus(4, "SUNRAYS", "Aircon/Ordinary", SamboanVO.getInstance(), "4:00 am", "8:30 pm", 2, 34, 143, "Left Wing"), // TODO assure, deleted Oslob
-            new Bus(5, "SUNRAYS", "Aircon/Ordinary", Samboan.getInstance(), "4:00 am", "8:30 pm", 2, 34, 143, "Left Wing"),
-            new Bus(6, "CHAN TRANSIT", "Ordinary", Dumanjug.getInstance(), "5:00 am", "11:00 pm", 2, 22, 75, "Left Wing"),
-            new Bus(7, "JBH/BRITT", "Ordinary", DumanjugVB.getInstance(), "6:00 am", "10:00 pm", 2, 9, 75, "Left Wing"), // TODO assure, deleted Barili
-            new Bus(7, "SOCORRO", "Ordinary", Dumanjug.getInstance(), "6:00 am", "6:00 pm", 3, 5, 75, "Left Wing"),
-            new Bus(8, "BEFEL LINER", "Ordinary", CarcarCity.getInstance(), "6:00 am", "6:00 pm", 6, 1, 60, "Left Wing"),
-            new Bus(8, "DOS HERMANOS", "Ordinary", CarcarCity.getInstance(), "6:00 am", "8:00 pm", 6, 3, 60, "Left Wing"),
-            new Bus(8, "INDAY JEAN", "Ordinary", CarcarCity.getInstance(), "5:00 am", "7:00 pm", 4, 1, 60, "Left Wing"),
-            new Bus(9, "ALLOWIE", "Ordinary", Sibonga.getInstance(), "6:00 am", "8:00 pm", 4, 5, 70, "Left Wing"),
-            new Bus(9, "ANDREW LINER", "Ordinary", Sibonga.getInstance(), "5:00 am", "6:00 pm", 4, 2, 70, "Left Wing"),
-            new Bus(9, "EDC", "Ordinary", Sibonga.getInstance(), "7:00 am", "7:00 pm", 2, 9, 70, "Left Wing"),
-            new Bus(9, "JRK/SEPO", "Ordinary", Sibonga.getInstance(), "5:00 am", "8:00 pm", 2, 14, 70, "Left Wing"),
-            new Bus(9, "PIONEER", "Ordinary", Sibonga.getInstance(), "4:00 am", "8:00 pm", 4, 10, 70, "Left Wing"),
-            new Bus(9, "SKIPPER", "Ordinary", Sibonga.getInstance(), "5:00 am", "6:00 pm", 4, 3, 70, "Left Wing"),
-            new Bus(9, "YEOMAN", "Ordinary", Sibonga.getInstance(), "5:00 am", "7:00 pm", 4, 10, 70, "Left Wing")
-    );*/
+    private ObservableList<Bus> buses = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -175,15 +137,14 @@ public class WayFinder_Controller implements Initializable{
         vbMain.setBackground(new Background(new BackgroundImage(background, NO_REPEAT, NO_REPEAT, DEFAULT, BackgroundSize.DEFAULT)));
         vbMain.setPrefHeight(screen.getHeight());
         vbMain.setPrefWidth(screen.getWidth());
-        
+
         String sql = "SELECT *" +
-                     "FROM bus_info";/* +
-                     "WHERE wing_area=?";*/
+                "FROM bus_info";
 
         try (Connection conn = this.connect()) {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            
+
             while (rs.next()) {
                 Municipality thisMunicipality = null;
                 for (Municipality m : municipalities) {
@@ -192,7 +153,36 @@ public class WayFinder_Controller implements Initializable{
                         break;
                     }
                 }
-                buses.add(new Bus(rs.getInt("bay_num"), rs.getString("company"), rs.getString("type"), thisMunicipality, rs.getString("first_departure"), rs.getString("last_trip"), rs.getInt("no_of_trips"), rs.getInt("no_of_buses"), rs.getInt("fare"), rs.getString("wing_area")));
+                String times = rs.getString("times");
+                Date[] timeLine = new Date[50];
+                int j = 0;
+                while (true){
+                    int hr = 0, min = 0;
+                    int offset = 10;
+                    boolean colonDone = false;
+                    try {
+                        while (times.charAt(0) != ',') {
+                            if (times.charAt(0) != ' ' && times.charAt(0) != ':') {
+                                if (!colonDone) {
+                                    hr = hr + (Integer.parseInt(times.charAt(0) + "") * offset);
+                                    offset = 1;
+                                } else {
+                                    min = min + (Integer.parseInt(times.charAt(0) + "") * offset);
+                                    offset = 1;
+                                }
+                            } else if (times.charAt(0) == ':') {
+                                colonDone = true;
+                                offset = 10;
+                            }
+                            times = times.substring(1);
+                        }
+                        times = times.substring(1);
+                        timeLine[j++] = new Date(0, 0, 0, hr, min);
+                    } catch (StringIndexOutOfBoundsException e) {
+                        break;
+                    }
+                }
+                buses.add(new Bus(rs.getInt("bay_num"), rs.getString("company"), rs.getString("type"), thisMunicipality, rs.getString("first_departure"), rs.getString("last_trip"), rs.getInt("no_of_trips"), rs.getInt("no_of_buses"), rs.getInt("fare"), rs.getString("wing_area"), timeLine));
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -205,12 +195,15 @@ public class WayFinder_Controller implements Initializable{
         tcDestination.setCellValueFactory(new PropertyValueFactory<>("destination"));
         tcFirstTrip.setCellValueFactory(new PropertyValueFactory<>("departure"));
         tcLastTrip.setCellValueFactory(new PropertyValueFactory<>("lastTrip"));
-        tcBuses.setCellValueFactory(new PropertyValueFactory<>("buses"));
+        tcTime.setCellValueFactory(new PropertyValueFactory<>("nextTime"));
         tcMaxFare.setCellValueFactory(new PropertyValueFactory<>("fares"));
 
         tvBusDetails.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Bus>() {
             @Override
             public void changed(ObservableValue<? extends Bus> observable, Bus oldValue, Bus newValue) {
+                if (newValue == null) {
+                    newValue = oldValue;
+                }
                 String ivPath = "sample/res/Terminal Map/";
                 switch (newValue.getWingArea()) {
                     case "Left Wing":
@@ -374,8 +367,7 @@ public class WayFinder_Controller implements Initializable{
         qualifier.clear();
         for (Bus bus : buses) {
             Municipality destination = bus.getDestination();
-            System.out.println(bus.getDestination());
-            if (destination.toString().equalsIgnoreCase(municipality.toString())) {
+            if (destination.toString().contains(municipality.toString())) {
                 qualifier.add(bus);
             } else if (destination.getEncompassingMunicipality() != null) {
                 for (Municipality m : destination.getEncompassingMunicipality()) {
@@ -385,6 +377,7 @@ public class WayFinder_Controller implements Initializable{
                 }
             }
         }
+        qualifier = bubbleSort(qualifier);
         tvBusDetails.setItems(qualifier);
 
         String ivPath = "sample/res/Terminal Map/";
@@ -453,5 +446,42 @@ public class WayFinder_Controller implements Initializable{
             System.err.println(e.getMessage());
         }
         return conn;
+    }
+
+    private ObservableList<Bus> bubbleSort(ObservableList<Bus> buses) {
+        int n = buses.size();
+        Bus temp;
+        Bus[] arr = new Bus[50];
+        for (int i = 0; i < buses.size(); i++) {
+            arr[i] = buses.get(i);
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+                double left, right;
+                if (arr[j - 1].getNextTime().equalsIgnoreCase("Arrived")) {
+                    left = 0;
+                } else {
+                    left = arr[j-1].nearestTime();
+                }
+                if (arr[j].getNextTime().equalsIgnoreCase("Arrived")) {
+                    right = 0;
+                } else {
+                    right = arr[j].nearestTime();
+                }
+                if (left > right) {
+                    //swap elements
+                    temp = arr[j - 1];
+                    arr[j - 1] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        buses.clear();
+        for (Bus b : arr) {
+            if (b != null) {
+                buses.add(b);
+            }
+        }
+        return buses;
     }
 }

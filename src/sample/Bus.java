@@ -1,5 +1,10 @@
 package sample;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by Serato, Jay Vince on October 12, 2017.
  */
@@ -9,11 +14,13 @@ public class Bus {
     private Municipality destination;
     private String departure;
     private String lastTrip;
+    private String nextTime;
+    private Date[] times;
 
     private String wingArea;
     private int trips, buses, bayNumber, fares;
 
-    public Bus(int bayNumber, String busCompany, String type, Municipality destination, String departure, String lastTrip, int trips, int buses, int fares, String wingArea) {
+    public Bus(int bayNumber, String busCompany, String type, Municipality destination, String departure, String lastTrip, int trips, int buses, int fares, String wingArea, Date[] times) {
         this.busCompany = busCompany;
         this.bayNumber = bayNumber;
         this.fares = fares;
@@ -24,6 +31,45 @@ public class Bus {
         this.lastTrip = lastTrip;
         this.trips = trips;
         this.buses = buses;
+        this.times = times;
+    }
+
+    public String getNextTime() {
+        Calendar cal = Calendar.getInstance();
+        double currTime = cal.getTime().getHours() + ((double) cal.getTime().getMinutes() / 100 * 1.67);
+        DateFormat df = new SimpleDateFormat("HH:mm");
+        for (Date timeOfBus : getTimes()) {
+            if (timeOfBus == null) {
+                break;
+            }
+            double timeBay = timeOfBus.getHours() + ((double) timeOfBus.getMinutes() / 100 * 1.67);
+            if (currTime - 0.5 <= timeBay) {
+                if (currTime >= timeBay) {
+                    return "Arrived";
+                } else {
+                    return df.format(timeOfBus);
+                }
+            }
+        }
+        return df.format(getTimes()[0]);
+    }
+
+    public double nearestTime() {
+        double currTime = Calendar.getInstance().getTime().getHours() + ((double) Calendar.getInstance().getTime().getMinutes() / 100 * 1.67);
+        for (Date timeOfBus : getTimes()) {
+            if (timeOfBus == null) {
+                break;
+            }
+            double timeBay = timeOfBus.getHours() + ((double) timeOfBus.getMinutes() / 100 * 1.67);
+            if (currTime <= timeBay) {
+                return timeBay;
+            }
+        }
+        return 0.0;
+    }
+
+    public void setNextTime(String nextTime) {
+        this.nextTime = nextTime;
     }
 
     public String getWingArea() {
@@ -32,6 +78,15 @@ public class Bus {
 
     public void setWingArea(String wingArea) {
         this.wingArea = wingArea;
+    }
+
+
+    public Date[] getTimes() {
+        return times;
+    }
+
+    public void setTimes(Date[] times) {
+        this.times = times;
     }
 
     public int getBayNumber() {

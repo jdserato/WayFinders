@@ -12,6 +12,6 @@ public class Sibonga extends Municipality {
     }
 
     private Sibonga() {
-        super("Sibonga", 70, 0, new Municipality[]{CarcarCity.getInstance()}, Argao.getInstance(), CarcarCity.getInstance());
+        super("Sibonga", 70, 83, new Municipality[]{CarcarCity.getInstance()}, Argao.getInstance(), CarcarCity.getInstance());
     }
 }
