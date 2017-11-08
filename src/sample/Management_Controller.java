@@ -82,6 +82,7 @@ public class Management_Controller implements Initializable{
                 }
                 buses.add(new Bus(rs.getInt("bay_num"), rs.getString("company"), rs.getString("type"), thisMunicipality, rs.getString("first_departure"), rs.getString("last_trip"), rs.getInt("no_of_trips"), rs.getInt("no_of_buses"), rs.getInt("fare"), rs.getString("wing_area"), timeLine, rs.getInt("bus_id")));
             }
+
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
