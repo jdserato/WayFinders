@@ -178,11 +178,11 @@ public class WayFinder_Controller implements Initializable {
                         }
                         times = times.substring(1);
                         timeLine[j++] = new Date(0, 0, 0, hr, min);
-                    } catch (StringIndexOutOfBoundsException e) {
+                    } catch (StringIndexOutOfBoundsException | NullPointerException e) {
                         break;
                     }
                 }
-                buses.add(new Bus(rs.getInt("bay_num"), rs.getString("company"), rs.getString("type"), thisMunicipality, rs.getString("first_departure"), rs.getString("last_trip"), rs.getInt("no_of_trips"), rs.getInt("no_of_buses"), rs.getInt("fare"), rs.getString("wing_area"), timeLine));
+                buses.add(new Bus(rs.getInt("bay_num"), rs.getString("company"), rs.getString("type"), thisMunicipality, rs.getString("first_departure"), rs.getString("last_trip"), rs.getInt("no_of_trips"), rs.getInt("no_of_buses"), rs.getInt("fare"), rs.getString("wing_area"), timeLine, rs.getInt("bus_id")));
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());

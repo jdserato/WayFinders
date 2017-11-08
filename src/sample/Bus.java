@@ -9,6 +9,7 @@ import java.util.Date;
  * Created by Serato, Jay Vince on October 12, 2017.
  */
 public class Bus {
+    private int id;
     private String busCompany;
     private String type;
     private Municipality destination;
@@ -20,7 +21,7 @@ public class Bus {
     private String wingArea;
     private int trips, buses, bayNumber, fares;
 
-    public Bus(int bayNumber, String busCompany, String type, Municipality destination, String departure, String lastTrip, int trips, int buses, int fares, String wingArea, Date[] times) {
+    public Bus(int bayNumber, String busCompany, String type, Municipality destination, String departure, String lastTrip, int trips, int buses, int fares, String wingArea, Date[] times, int id) {
         this.busCompany = busCompany;
         this.bayNumber = bayNumber;
         this.fares = fares;
@@ -32,6 +33,7 @@ public class Bus {
         this.trips = trips;
         this.buses = buses;
         this.times = times;
+        this.id = id;
     }
 
     public String getNextTime() {
@@ -87,6 +89,14 @@ public class Bus {
 
     public void setTimes(Date[] times) {
         this.times = times;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getBayNumber() {

@@ -21,11 +21,11 @@ public class Main extends Application {
         primaryStage.setTitle("SBT Directory System");
         primaryStage.setFullScreen(true);
         primaryStage.setAlwaysOnTop(true);
-        primaryStage.show();/*
         Parent newStage = FXMLLoader.load(getClass().getResource("Management.fxml"));
-        Scene newScene = new Scene(newStage, 400, 400);
+        Scene newScene = new Scene(newStage, 800, 400);
         Stage secondaryStage = new Stage();
         secondaryStage.setScene(newScene);
-        secondaryStage.show();*/
+        secondaryStage.show();
+        primaryStage.show();
     }
 }
