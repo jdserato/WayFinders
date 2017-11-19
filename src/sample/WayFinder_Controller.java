@@ -4,19 +4,17 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
-import sample.Municipalities.*;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.*;
@@ -30,7 +28,7 @@ import static javafx.scene.layout.BackgroundRepeat.NO_REPEAT;
  * Created by Serato, Jay Vince on November 01, 2017.
  */
 public class WayFinder_Controller implements Initializable {
-    public Pane pMap;
+    public Pane pMap, pTapToStart;
     public VBox vbMain, vbDetails;
     public TableView<Bus> tvBusDetails;
     public TableColumn<Bus, String> tcBusCompany, tcBusType, tccLocation, tcWingArea, tcBayNumber, tcDestination, tcLastTrip, tcFirstTrip, tcTime, tcMaxFare;
@@ -39,98 +37,24 @@ public class WayFinder_Controller implements Initializable {
     public Label lTuburan, lAsturias, lBalamban, lToledoCity, lPinamungajan, lAloguinsan, lBarili, lDumanjug, lRonda, lAlcantara, lMoalboal, lBadian, lAlegria, lMalabuyoc, lGinatilan, lSamboan, lOslob, lBoljoon, lAlcoy, lDalaguete, lArgao, lSibonga, lCarcarCity, lZamboanga, lBacolod, lSantander, lDumaguete;
     public ImageView ivBackToMap, ivPrev, ivNext, ivTerminalPath;
     public Label lBackToMap, lDestination, lPrev, lNext;
-
-    private ObservableList<Municipality> municipalities = FXCollections.observableArrayList(AloguinsanVP.getInstance(), DumanjugVB.getInstance(), PinamungajanVA.getInstance(), SamboanVO.getInstance(), SamboanVB.getInstance(), Bacolod.getInstance(), Zamboanga.getInstance(), Dumaguete.getInstance(), Tuburan.getInstance(), Balamban.getInstance(), Asturias.getInstance(), Balamban.getInstance(), ToledoCity.getInstance(), Pinamungajan.getInstance(), Aloguinsan.getInstance(), Barili.getInstance(), Dumanjug.getInstance(), Ronda.getInstance(), Alcantara.getInstance(), Moalboal.getInstance(), Badian.getInstance(), Alegria.getInstance(), Malabuyoc.getInstance(), Ginatilan.getInstance(), Samboan.getInstance(), Santander.getInstance(), Oslob.getInstance(), Boljoon.getInstance(), Alcoy.getInstance(), Dalaguete.getInstance(), Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance());
+    public ListView<String> lvAnnouncements, lvFAQ;
 
     private ObservableList<Bus> qualifier = FXCollections.observableArrayList();
     private ObservableList<Bus> buses = FXCollections.observableArrayList();
+    private ObservableList<Municipality> municipalities = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO must initialize things here
-
-        Alcantara.getInstance().setEncompassingMunicipality(new Municipality[]{CarcarCity.getInstance(), Sibonga.getInstance(), Argao.getInstance()});
-        Alcantara.getInstance().setLeftMun(Ronda.getInstance());
-        Alcantara.getInstance().setRightMun(Moalboal.getInstance());
-        Alcoy.getInstance().setEncompassingMunicipality(new Municipality[]{Dalaguete.getInstance(), Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance()});
-        Alcoy.getInstance().setLeftMun(Boljoon.getInstance());
-        Alcoy.getInstance().setRightMun(Dalaguete.getInstance());
-        Alegria.getInstance().setEncompassingMunicipality(new Municipality[]{Badian.getInstance(), Moalboal.getInstance(), Alcantara.getInstance(), Ronda.getInstance(), Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()});
-        Alegria.getInstance().setLeftMun(Badian.getInstance());
-        Alegria.getInstance().setRightMun(Malabuyoc.getInstance());
-        Aloguinsan.getInstance().setEncompassingMunicipality(new Municipality[]{CarcarCity.getInstance()});
-        Aloguinsan.getInstance().setLeftMun(Pinamungajan.getInstance());
-        Aloguinsan.getInstance().setRightMun(Barili.getInstance());
-        AloguinsanVP.getInstance().setEncompassingMunicipality(new Municipality[]{ToledoCity.getInstance(), Pinamungajan.getInstance()});
-        AloguinsanVP.getInstance().setLeftMun(Pinamungajan.getInstance());
-        AloguinsanVP.getInstance().setRightMun(Barili.getInstance());
-        Argao.getInstance().setEncompassingMunicipality(new Municipality[]{Sibonga.getInstance(), CarcarCity.getInstance()});
-        Argao.getInstance().setLeftMun(Dalaguete.getInstance());
-        Argao.getInstance().setRightMun(Sibonga.getInstance());
-        Asturias.getInstance().setEncompassingMunicipality(new Municipality[]{Balamban.getInstance()});
-        Asturias.getInstance().setLeftMun(Tuburan.getInstance());
-        Asturias.getInstance().setRightMun(Balamban.getInstance());
-        Bacolod.getInstance().setLeftMun(Dumaguete.getInstance());
-        Bacolod.getInstance().setRightMun(Tuburan.getInstance());
-        Badian.getInstance().setEncompassingMunicipality(new Municipality[]{Moalboal.getInstance(), Alcantara.getInstance(), Ronda.getInstance(), Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()});
-        Badian.getInstance().setLeftMun(Moalboal.getInstance());
-        Badian.getInstance().setRightMun(Alegria.getInstance());
-        Balamban.getInstance().setLeftMun(Asturias.getInstance());
-        Balamban.getInstance().setRightMun(ToledoCity.getInstance());
-        Barili.getInstance().setEncompassingMunicipality(new Municipality[]{CarcarCity.getInstance()});
-        Barili.getInstance().setLeftMun(Aloguinsan.getInstance());
-        Barili.getInstance().setRightMun(Dumanjug.getInstance());
-        Boljoon.getInstance().setEncompassingMunicipality(new Municipality[]{Alcoy.getInstance(), Dalaguete.getInstance(), Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance()});
-        Boljoon.getInstance().setLeftMun(Oslob.getInstance());
-        Boljoon.getInstance().setRightMun(Alcoy.getInstance());
-        CarcarCity.getInstance().setLeftMun(Sibonga.getInstance());
-        CarcarCity.getInstance().setRightMun(Zamboanga.getInstance());
-        Dalaguete.getInstance().setEncompassingMunicipality(new Municipality[]{Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance()});
-        Dalaguete.getInstance().setLeftMun(Alcoy.getInstance());
-        Dalaguete.getInstance().setRightMun(Argao.getInstance());
-        Dumaguete.getInstance().setLeftMun(Zamboanga.getInstance());
-        Dumaguete.getInstance().setRightMun(Bacolod.getInstance());
-        Dumanjug.getInstance().setEncompassingMunicipality(new Municipality[]{Sibonga.getInstance(), CarcarCity.getInstance()});
-        Dumanjug.getInstance().setLeftMun(Barili.getInstance());
-        Dumanjug.getInstance().setRightMun(Ronda.getInstance());
-        DumanjugVB.getInstance().setEncompassingMunicipality(new Municipality[]{Barili.getInstance(), CarcarCity.getInstance()});
-        Ginatilan.getInstance().setEncompassingMunicipality(new Municipality[]{Malabuyoc.getInstance(), Alegria.getInstance(), Badian.getInstance(), Moalboal.getInstance(), Alcantara.getInstance(), Ronda.getInstance(), Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()});
-        Ginatilan.getInstance().setLeftMun(Malabuyoc.getInstance());
-        Ginatilan.getInstance().setRightMun(Samboan.getInstance());
-        Malabuyoc.getInstance().setEncompassingMunicipality(new Municipality[]{Alegria.getInstance(), Badian.getInstance(), Moalboal.getInstance(), Alcantara.getInstance(), Ronda.getInstance(), Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()});
-        Malabuyoc.getInstance().setLeftMun(Alegria.getInstance());
-        Malabuyoc.getInstance().setRightMun(Ginatilan.getInstance());
-        Moalboal.getInstance().setEncompassingMunicipality(new Municipality[]{Alcantara.getInstance(), Ronda.getInstance(), Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()});
-        Moalboal.getInstance().setLeftMun(Alcantara.getInstance());
-        Moalboal.getInstance().setRightMun(Badian.getInstance());
-        Oslob.getInstance().setEncompassingMunicipality(new Municipality[]{Boljoon.getInstance(), Alcoy.getInstance(), Dalaguete.getInstance(), Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance()});
-        Oslob.getInstance().setLeftMun(Santander.getInstance());
-        Oslob.getInstance().setRightMun(Boljoon.getInstance());
-        Pinamungajan.getInstance().setEncompassingMunicipality(new Municipality[]{ToledoCity.getInstance()});
-        Pinamungajan.getInstance().setLeftMun(ToledoCity.getInstance());
-        Pinamungajan.getInstance().setRightMun(Aloguinsan.getInstance());
-        PinamungajanVA.getInstance().setEncompassingMunicipality(new Municipality[]{Aloguinsan.getInstance(), CarcarCity.getInstance()});
-        Ronda.getInstance().setEncompassingMunicipality(new Municipality[]{Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()});
-        Ronda.getInstance().setLeftMun(Dumanjug.getInstance());
-        Ronda.getInstance().setRightMun(Moalboal.getInstance());
-        Samboan.getInstance().setEncompassingMunicipality(new Municipality[]{Ginatilan.getInstance(), Malabuyoc.getInstance(), Alegria.getInstance(), Badian.getInstance(), Moalboal.getInstance(), Alcantara.getInstance(), Ronda.getInstance(), Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()});
-        Samboan.getInstance().setLeftMun(Ginatilan.getInstance());
-        Samboan.getInstance().setRightMun(Santander.getInstance());
-        SamboanVB.getInstance().setEncompassingMunicipality(new Municipality[]{Ginatilan.getInstance(), Malabuyoc.getInstance(), Alegria.getInstance(), Badian.getInstance(), Moalboal.getInstance(), Alcantara.getInstance(), Ronda.getInstance(), Dumanjug.getInstance(), Barili.getInstance(), CarcarCity.getInstance()});
-        SamboanVO.getInstance().setEncompassingMunicipality(new Municipality[]{Santander.getInstance(), Oslob.getInstance(), Boljoon.getInstance(), Alcoy.getInstance(), Dalaguete.getInstance(), Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance()});
-        Santander.getInstance().setEncompassingMunicipality(new Municipality[]{Oslob.getInstance(), Boljoon.getInstance(), Alcoy.getInstance(), Dalaguete.getInstance(), Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance()});
-        Santander.getInstance().setLeftMun(Samboan.getInstance());
-        Santander.getInstance().setRightMun(Oslob.getInstance());
-        Sibonga.getInstance().setEncompassingMunicipality(new Municipality[]{CarcarCity.getInstance()});
-        Sibonga.getInstance().setLeftMun(Argao.getInstance());
-        Sibonga.getInstance().setRightMun(CarcarCity.getInstance());
-        ToledoCity.getInstance().setLeftMun(Balamban.getInstance());
-        ToledoCity.getInstance().setRightMun(Pinamungajan.getInstance());
-        Tuburan.getInstance().setEncompassingMunicipality(new Municipality[]{Asturias.getInstance(), Balamban.getInstance()});
-        Tuburan.getInstance().setLeftMun(Bacolod.getInstance());
-        Tuburan.getInstance().setRightMun(Asturias.getInstance());
-        Zamboanga.getInstance().setLeftMun(CarcarCity.getInstance());
-        Zamboanga.getInstance().setRightMun(Dumaguete.getInstance());
+        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(60), new Runnable() {
+            @Override
+            public void run() {
+                vbDetails.setVisible(false);
+                pMap.setVisible(true);
+                pMap.setOpacity(0.25);
+                pTapToStart.setVisible(true);
+            }
+        }, true);
+        idleMonitor.register(vbDetails, Event.ANY);
 
         Rectangle2D screen = Screen.getPrimary().getVisualBounds();
         Image background = new Image("sample/res/Background.png", screen.getWidth(), screen.getHeight(), false, true);
@@ -139,6 +63,79 @@ public class WayFinder_Controller implements Initializable {
         vbMain.setPrefWidth(screen.getWidth());
 
         String sql = "SELECT *" +
+                "FROM municipality_info";
+
+        try (Connection conn = this.connect()) {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                municipalities.add(new Municipality(rs.getString("name"), rs.getInt("fare_ordinary"), rs.getInt("fare_aircon"), null, null, null));
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        try (Connection conn = this.connect()) {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            for (int i = 0; i < municipalities.size(); i++) {
+                rs.next();
+                Municipality leftMun = null, rightMun = null, subroute = null;
+                Municipality[] encompassingMunicipality = new Municipality[15];
+
+                String left = rs.getString("left_mun");
+                String right = rs.getString("right_mun");
+                String subR = rs.getString("subroute");
+                boolean subrouteFound = false;
+                for (Municipality m : municipalities) {
+                    if (m.toString().equalsIgnoreCase(left)) {
+                        leftMun = m;
+                    } else if (m.toString().equalsIgnoreCase(right)) {
+                        rightMun = m;
+                    }
+                    if (!subrouteFound && m.getName().equalsIgnoreCase(subR)) {
+                        subroute = m;
+                        subrouteFound = true;
+                    }
+                }
+                ObservableList<Municipality> encompassed = FXCollections.observableArrayList();
+                String enc = rs.getString("encompassed_mun");
+                String mun = "";
+                for (int j = 0; j < enc.length(); j++) {
+
+                    if (enc.charAt(j) == ',' || j == enc.length() - 1) {
+                        if (j == enc.length() - 1) {
+                            mun = mun.concat(enc.charAt(j) + "");
+                        }
+                        for (Municipality m : municipalities) {
+                            if (mun.equalsIgnoreCase(m.getName())) {
+                                encompassed.add(m);
+                                break;
+                            }
+                        }
+                        mun = "";
+                        j++;
+                    } else {
+                        mun = mun.concat(enc.charAt(j) + "");
+                    }
+                }
+                municipalities.get(i).setLeftMun(leftMun);
+                municipalities.get(i).setRightMun(rightMun);
+                municipalities.get(i).setSubroute(subroute);
+
+                int j = 0;
+                for (Municipality m : encompassed) {
+                    encompassingMunicipality[j++] = m;
+                }
+                municipalities.get(i).setEncompassingMunicipality(encompassingMunicipality);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        sql = "SELECT *" +
                 "FROM bus_info";
 
         try (Connection conn = this.connect()) {
@@ -184,6 +181,7 @@ public class WayFinder_Controller implements Initializable {
                 }
                 buses.add(new Bus(rs.getInt("bay_num"), rs.getString("company"), rs.getString("type"), thisMunicipality, rs.getString("first_departure"), rs.getString("last_trip"), rs.getInt("no_of_trips"), rs.getInt("no_of_buses"), rs.getInt("fare"), rs.getString("wing_area"), timeLine, rs.getInt("bus_id")));
             }
+
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
@@ -223,155 +221,290 @@ public class WayFinder_Controller implements Initializable {
 
     @FXML
     public void handleBacolodSelected() {
-        handleMunicipalitySelected(Bacolod.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Bacolod")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleTuburanSelected() {
-        handleMunicipalitySelected(Tuburan.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Tuburan")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleAsturiasSelected() {
-        handleMunicipalitySelected(Asturias.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Asturias")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleBalambanSelected() {
-        handleMunicipalitySelected(Balamban.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Balamban")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleToledoCitySelected() {
-        handleMunicipalitySelected(ToledoCity.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Toledo City")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handlePinamungajanSelected() {
-        handleMunicipalitySelected(Pinamungajan.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Pinamungajan")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleAloguinsanSelected() {
-        handleMunicipalitySelected(Aloguinsan.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Aloguinsan")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleBariliSelected() {
-        handleMunicipalitySelected(Barili.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Barili")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleDumanjugSelected() {
-        handleMunicipalitySelected(Dumanjug.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Dumanjug")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleRondaSelected() {
-        handleMunicipalitySelected(Ronda.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Ronda")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleAlcantaraSelected() {
-        handleMunicipalitySelected(Alcantara.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Alcantara")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleMoalboalSelected() {
-        handleMunicipalitySelected(Moalboal.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Moalboal")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleBadianSelected() {
-        handleMunicipalitySelected(Badian.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Badian")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleAlegriaSelected() {
-        handleMunicipalitySelected(Alegria.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Alegria")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleMalabuyocSelected() {
-        handleMunicipalitySelected(Malabuyoc.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Malabuyoc")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleGinatilanSelected() {
-        handleMunicipalitySelected(Ginatilan.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Ginatilan")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleSamboanSelected() {
-        handleMunicipalitySelected(Samboan.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Samboan")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleSantanderSelected() {
-        handleMunicipalitySelected(Santander.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Santander")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleOslobSelected() {
-        handleMunicipalitySelected(Oslob.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Oslob")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleBoljoonSelected() {
-        handleMunicipalitySelected(Boljoon.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Boljoon")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleAlcoySelected() {
-        handleMunicipalitySelected(Alcoy.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Alcoy")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleDalagueteSelected() {
-        handleMunicipalitySelected(Dalaguete.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Dalaguete")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleArgaoSelected() {
-        handleMunicipalitySelected(Argao.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Argao")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleSibongaSelected() {
-        handleMunicipalitySelected(Sibonga.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Sibonga")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleCarcarCitySelected() {
-        handleMunicipalitySelected(CarcarCity.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Carcar City")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleDumagueteSelected() {
-        handleMunicipalitySelected(Dumaguete.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Dumaguete")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     @FXML
     public void handleZamboangaSelected() {
-        handleMunicipalitySelected(Zamboanga.getInstance());
+        for (Municipality m : municipalities) {
+            if (m.getName().equalsIgnoreCase("Zamboanga")) {
+                handleMunicipalitySelected(m);
+                break;
+            }
+        }
     }
 
     private void handleMunicipalitySelected(Municipality municipality) {
-        pMap.setVisible(false);
+        pMap.setOpacity(0.25);
         vbDetails.setVisible(true);
 
         lDestination.setText(municipality.toString());
-        lPrev.setText(municipality.getLeftMun().toString());
-        lNext.setText(municipality.getRightMun().toString());
+        lPrev.setText(municipality.getLeftMun().getName());
+        lNext.setText(municipality.getRightMun().getName());
 
         qualifier.clear();
         for (Bus bus : buses) {
             Municipality destination = bus.getDestination();
-            if (destination.toString().contains(municipality.toString())) {
+            if (destination != null && destination.toString().contains(municipality.toString())) {
                 qualifier.add(bus);
-            } else if (destination.getEncompassingMunicipality() != null) {
+            } else if (destination != null && destination.getEncompassingMunicipality()[0] != null) {
                 for (Municipality m : destination.getEncompassingMunicipality()) {
-                    if (m.toString().equalsIgnoreCase(municipality.toString())) {
+                    if (m != null && m.toString().equalsIgnoreCase(municipality.toString())) {
                         qualifier.add(bus);
                     }
                 }
@@ -416,6 +549,7 @@ public class WayFinder_Controller implements Initializable {
     private void handleBackToMap() {
         vbDetails.setVisible(false);
         pMap.setVisible(true);
+        pMap.setOpacity(1.0);
     }
 
     @FXML
@@ -434,6 +568,12 @@ public class WayFinder_Controller implements Initializable {
                 handleMunicipalitySelected(m);
             }
         }
+    }
+
+    @FXML
+    private void handleStartClicked() {
+        pTapToStart.setVisible(false);
+        pMap.setOpacity(1.0);
     }
 
     private Connection connect() {

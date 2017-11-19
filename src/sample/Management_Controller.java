@@ -6,13 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import sample.Municipalities.*;
 
 import java.net.URL;
 import java.sql.*;
@@ -24,14 +25,15 @@ import java.util.ResourceBundle;
  */
 public class Management_Controller implements Initializable{
     public ComboBox<String> cbBus, cbDestination, cbType;
-    public Button btnSearch, btnSave, btnAdd;
+    public Button btnSearch, btnSave, btnBack;
     public ImageView ivAddBus;
     public TextField tfCompany, tfType, tfDestination, tfFirstDep, tfLastDep, tfTrips, tfBuses, tfFare, tfWingArea, tfBayNumber;
-    public VBox vbMainPane, vbEditBuses;
+    public VBox vbMainPane, vbEditBuses, vbDetail1_1, vbDetail1_2, vbDetail2_1, vbDetail2_2;
     public HBox hbDetail, hbEditBus;
+    public Label lMaxFare;
 
     private ObservableList<Bus> buses = FXCollections.observableArrayList();
-    private ObservableList<Municipality> municipalities = FXCollections.observableArrayList(AloguinsanVP.getInstance(), DumanjugVB.getInstance(), PinamungajanVA.getInstance(), SamboanVO.getInstance(), SamboanVB.getInstance(), Bacolod.getInstance(), Zamboanga.getInstance(), Dumaguete.getInstance(), Tuburan.getInstance(), Balamban.getInstance(), Asturias.getInstance(), Balamban.getInstance(), ToledoCity.getInstance(), Pinamungajan.getInstance(), Aloguinsan.getInstance(), Barili.getInstance(), Dumanjug.getInstance(), Ronda.getInstance(), Alcantara.getInstance(), Moalboal.getInstance(), Badian.getInstance(), Alegria.getInstance(), Malabuyoc.getInstance(), Ginatilan.getInstance(), Samboan.getInstance(), Santander.getInstance(), Oslob.getInstance(), Boljoon.getInstance(), Alcoy.getInstance(), Dalaguete.getInstance(), Argao.getInstance(), Sibonga.getInstance(), CarcarCity.getInstance());
+    private ObservableList<Municipality> municipalities = FXCollections.observableArrayList();
     private Bus busQueriest;
 
     @Override
@@ -133,7 +135,9 @@ public class Management_Controller implements Initializable{
                         busQuerier.add(bus);
                     }
                 }
-                cbType.setItems(ty);
+                if (!btnSave.getText().equalsIgnoreCase("Save Fares")) {
+                    cbType.setItems(ty);
+                }
             }
         });
         cbType.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -153,13 +157,62 @@ public class Management_Controller implements Initializable{
     }
 
     @FXML
+    private void handleBackClicked() {
+        vbEditBuses.setVisible(false);
+        vbMainPane.setVisible(true);
+        for (Node n : vbDetail2_2.getChildren()) {
+            n.setVisible(true);
+        }
+        for (Node n : vbDetail2_1.getChildren()) {
+            n.setVisible(true);
+        }
+        vbDetail1_2.setVisible(true);
+        vbDetail1_1.setVisible(true);
+        for (Node n : hbEditBus.getChildren()) {
+            n.setVisible(true);
+        }
+    }
+
+    @FXML
+    private void handleEditBusClicked() {
+        hbEditBus.setVisible(true);
+        vbEditBuses.setVisible(true);
+        hbDetail.setVisible(true);
+        btnSave.setVisible(true);
+        vbMainPane.setVisible(false);
+        tfCompany.setText("");
+        tfBayNumber.setText("");
+        tfDestination.setText("");
+        tfType.setText("");
+        tfFirstDep.setText("");
+        tfLastDep.setText("");
+        tfTrips.setText("");
+        tfBuses.setText("");
+        tfFare.setText("");
+        tfWingArea.setText("");
+        btnSave.setText("Save");
+        hbDetail.setDisable(true);
+    }
+
+    @FXML
     private void handleAddBusClicked() {
         vbMainPane.setVisible(false);
         vbEditBuses.setVisible(true);
         hbEditBus.setVisible(false);
         hbDetail.setVisible(true);
-        btnAdd.setVisible(true);
+        btnSave.setVisible(true);
+        btnSave.setText("Add");
         tfCompany.setEditable(true);
+        tfCompany.setText("");
+        tfBayNumber.setText("");
+        tfDestination.setText("");
+        tfType.setText("");
+        tfFirstDep.setText("");
+        tfLastDep.setText("");
+        tfTrips.setText("");
+        tfBuses.setText("");
+        tfFare.setText("");
+        tfWingArea.setText("");
     }
 
     @FXML
@@ -186,7 +239,7 @@ public class Management_Controller implements Initializable{
                         break;
                     }
                 }
-                buses.add(new Bus(Integer.parseInt(tfBayNumber.getText()),tfCompany.getText(), tfType.getText(), sel, tfFirstDep.getText(), tfLastDep.getText(), Integer.parseInt(tfTrips.getText()), Integer.parseInt(tfBuses.getText()), Integer.parseInt(tfFare.getText()), tfWingArea.getText() , new Date[5], 0));
+                buses.add(new Bus(Integer.parseInt(tfBayNumber.getText()),tfCompany.getText(), tfType.getText(), sel, tfFirstDep.getText(), tfLastDep.getText(), Integer.parseInt(tfTrips.getText()), Integer.parseInt(tfBuses.getText()), Integer.parseInt(tfFare.getText()), tfWingArea.getText() , new Date[]{new Date(0, 0, 0, 7, 0), new Date(0, 0, 0, 12, 15)}, 0));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -195,49 +248,135 @@ public class Management_Controller implements Initializable{
 
     @FXML
     private void handleEditClicked() {
-        tfCompany.setText(cbBus.getValue());
-        tfDestination.setText(cbDestination.getValue());
-        tfType.setText(cbType.getValue());
-        tfFirstDep.setText(busQueriest.getDeparture());
-        tfLastDep.setText(busQueriest.getLastTrip());
-        tfTrips.setText(busQueriest.getTrips() + "");
-        tfBuses.setText(busQueriest.getBuses() + "");
-        tfFare.setText(busQueriest.getFares() + "");
-        tfWingArea.setText(busQueriest.getWingArea());
-        tfBayNumber.setText(busQueriest.getBayNumber() + "");
+        if (!btnSave.getText().equalsIgnoreCase("Save Fares")) {
+            tfCompany.setText(cbBus.getValue());
+            tfDestination.setText(cbDestination.getValue());
+            tfType.setText(cbType.getValue());
+            tfFirstDep.setText(busQueriest.getDeparture());
+            tfLastDep.setText(busQueriest.getLastTrip());
+            tfTrips.setText(busQueriest.getTrips() + "");
+            tfBuses.setText(busQueriest.getBuses() + "");
+            tfFare.setText(busQueriest.getFares() + "");
+            tfWingArea.setText(busQueriest.getWingArea());
+            tfBayNumber.setText(busQueriest.getBayNumber() + "");
+        } else {
+            for (Municipality m : municipalities) {
+                if (cbDestination.getValue().equalsIgnoreCase(m.toString())) {
+                    if (cbType.getValue().equalsIgnoreCase("Aircon")) {
+                        tfFare.setText(m.getFareAircon() + "");
+                    } else {
+                        tfFare.setText(m.getFareOrdinary() + "");
+                    }
+                }
+            }
+        }
         btnSave.setVisible(true);
         hbDetail.setVisible(true);
+        if (!btnSave.getText().equalsIgnoreCase("Delete")) {
+            hbDetail.setDisable(false);
+        }
+    }
+
+    @FXML
+    private void handleEditFaresClicked() {
+        vbMainPane.setVisible(false);
+        vbEditBuses.setVisible(true);
+        hbEditBus.setVisible(true);
+        hbDetail.setDisable(true);
+        cbBus.setVisible(false);
+        cbDestination.setDisable(false);
+        cbType.setDisable(true);
+        btnSearch.setDisable(true);
+        btnSave.setText("Save Fares");
+        ObservableList<String> municipalityWO = FXCollections.observableArrayList();
+        ObservableList<String> type = FXCollections.observableArrayList("Aircon", "Ordinary");
+        vbDetail1_1.setVisible(false);
+        vbDetail1_2.setVisible(false);
+        for (Node n : vbDetail2_1.getChildren()) {
+            n.setVisible(false);
+        }
+        for (Node n : vbDetail2_2.getChildren()) {
+            n.setVisible(false);
+        }
+        tfFare.setVisible(true);
+        lMaxFare.setVisible(true);
+
+        for (Municipality m : municipalities) {
+            if (!municipalityWO.contains(m.toString())) {
+                municipalityWO.add(m.toString());
+            }
+        }
+        cbDestination.setItems(municipalityWO);
+        cbType.setItems(type);
+    }
+
+    @FXML
+    private void handleDeleteBusClicked() {
+        this.handleEditBusClicked();
+        btnSave.setText("Delete");
     }
 
     @FXML
     private void handleSaveClicked() {
-        String query = "UPDATE bus_info " +
-                "SET destination = ? , " +
-                "type = ? ," +
-                " first_departure = ? ," +
-                " last_trip = ? ," +
-                " no_of_trips = ? ," +
-                " no_of_buses = ? ," +
-                " fare = ? ," +
-                " wing_area = ? ," +
-                " bay_num = ? " +
-                "WHERE bus_id = ?";
-        try (Connection conn = this.connect()){
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, tfDestination.getText());
-            pstmt.setString(2, tfType.getText());
-            pstmt.setString(3, tfFirstDep.getText());
-            pstmt.setString(4, tfLastDep.getText());
-            pstmt.setInt(5, Integer.parseInt(tfTrips.getText()));
-            pstmt.setInt(6, Integer.parseInt(tfBuses.getText()));
-            pstmt.setInt(7, Integer.parseInt(tfFare.getText()));
-            pstmt.setString(8, tfWingArea.getText());
-            pstmt.setInt(9, Integer.parseInt(tfBayNumber.getText()));
-            pstmt.setInt(10, busQueriest.getId());
+        if (btnSave.getText().equalsIgnoreCase("Save")) {
+            String query = "UPDATE bus_info " +
+                    "SET destination = ? , " +
+                    "type = ? ," +
+                    " first_departure = ? ," +
+                    " last_trip = ? ," +
+                    " no_of_trips = ? ," +
+                    " no_of_buses = ? ," +
+                    " fare = ? ," +
+                    " wing_area = ? ," +
+                    " bay_num = ? " +
+                    "WHERE bus_id = ?";
+            try (Connection conn = this.connect()) {
+                PreparedStatement pstmt = conn.prepareStatement(query);
+                pstmt.setString(1, tfDestination.getText());
+                pstmt.setString(2, tfType.getText());
+                pstmt.setString(3, tfFirstDep.getText());
+                pstmt.setString(4, tfLastDep.getText());
+                pstmt.setInt(5, Integer.parseInt(tfTrips.getText()));
+                pstmt.setInt(6, Integer.parseInt(tfBuses.getText()));
+                pstmt.setInt(7, Integer.parseInt(tfFare.getText()));
+                pstmt.setString(8, tfWingArea.getText());
+                pstmt.setInt(9, Integer.parseInt(tfBayNumber.getText()));
+                pstmt.setInt(10, busQueriest.getId());
 
-            System.out.println(pstmt.executeUpdate());
-        } catch (SQLException e) {
-            e.printStackTrace();
+                System.out.println(pstmt.executeUpdate());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (btnSave.getText().equalsIgnoreCase("Add")) {
+            this.handleAddClicked();
+        } else if (btnSave.getText().equalsIgnoreCase("Save Fares")) {
+            for (Municipality m : municipalities) {
+                if (m.toString().equalsIgnoreCase(cbDestination.getValue())) {
+                    if (cbType.getValue().equalsIgnoreCase("Aircon")) {
+                        m.setFareAircon(Integer.parseInt(tfFare.getText()));
+                    } else {
+                        m.setFareOrdinary(Integer.parseInt(tfFare.getText()));
+                    }
+                }
+            }
+        } else if (btnSave.getText().equalsIgnoreCase("Delete")) {
+            String query = "DELETE from bus_info " +
+                    "WHERE bus_id = ?";
+            try (Connection conn = this.connect()){
+                PreparedStatement pstmt = conn.prepareStatement(query);
+                for (Bus b : buses) {
+                    if (b.getBusCompany().equalsIgnoreCase(cbBus.getValue()) && b.getType().equalsIgnoreCase(cbType.getValue()) && b.getDestination().toString().equalsIgnoreCase(cbDestination.getValue())) {
+                        pstmt.setInt(1, b.getId());
+                        System.out.println("FOUND");
+                        break;
+                    }
+                    System.out.println(cbType.getValue() + " | " + cbDestination.getValue() + " | " + cbBus.getValue());
+                    System.out.println(b.getType() + " ? " + b.getDestination() + " ? " + b.getBusCompany());
+                }
+                System.out.println(pstmt.executeUpdate());
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
         }
     }
 
