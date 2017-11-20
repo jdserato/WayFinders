@@ -17,309 +17,331 @@
             <Font name="Governor" size="49.0" />
          </font>
       </Label>
-      <Pane fx:id="pMap" prefHeight="593.0" prefWidth="1340.0">
+      <Pane fx:id="pMap" opacity="0.25" prefHeight="0.0" prefWidth="1340.0">
          <children>
-            <Label layoutX="1073.0" layoutY="18.0" prefHeight="28.0" prefWidth="204.0" text="ANNOUNCEMENTS">
-               <font>
-                  <Font name="Microsoft Tai Le Bold" size="22.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="635.0" fitWidth="393.0" layoutX="482.0" layoutY="11.0" opacity="0.7" pickOnBounds="true">
-               <image>
-                  <Image url="@res/white.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="360.0" fitWidth="265.0" layoutX="680.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Unimportant.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="503.0" layoutY="48.0" text="Press a municipality label to &#10;view bus details and whereabouts" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font size="16.0" />
-               </font></Label>
-            <ImageView fx:id="ivSamboan" fitHeight="32.0" fitWidth="26.0" layoutX="568.0" layoutY="593.0" onMouseClicked="#handleSamboanSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Samboan.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivAlegria" fitHeight="50.0" fitWidth="40.0" layoutX="577.0" layoutY="486.0" onMouseClicked="#handleAlegriaSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Alegria.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivBalamban" fitHeight="49.0" fitWidth="71.0" layoutX="699.0" layoutY="240.0" onMouseClicked="#handleBalambanSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Balamban.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lAlcoy" layoutX="653.0" layoutY="519.0" onMouseClicked="#handleAlcoySelected" text="Alcoy" textFill="#fa0c0c">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivBoljoon" fitHeight="42.0" fitWidth="45.0" layoutX="601.0" layoutY="533.0" onMouseClicked="#handleBoljoonSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Boljoon.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivDumanjug" fitHeight="35.0" fitWidth="41.0" layoutX="610.0" layoutY="385.0" onMouseClicked="#handleDumanjugSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Dumanjug.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lBalamban" layoutX="640.0" layoutY="246.0" onMouseClicked="#handleBalambanSelected" text="Balamban" textFill="#e19f3d">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivOslob" fitHeight="74.0" fitWidth="54.0" layoutX="581.0" layoutY="563.0" onMouseClicked="#handleOslobSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/oSLOB.PNG" />
-               </image>
-            </ImageView>
-            <Label fx:id="lBadian" layoutX="540.0" layoutY="449.0" onMouseClicked="#handleBadianSelected" text="Badian" textFill="#6f734c">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivDalaguete" fitHeight="58.0" fitWidth="54.0" layoutX="612.0" layoutY="456.0" onMouseClicked="#handleDalagueteSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Dalaguete.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivGinatilan" fitHeight="42.0" fitWidth="36.0" layoutX="565.0" layoutY="565.0" onMouseClicked="#handleGinatilanSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Ginatilan.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivTuburan" fitHeight="65.0" fitWidth="49.0" layoutX="724.0" layoutY="165.0" onMouseClicked="#handleTuburanSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Tuburan.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lSamboan" layoutX="505.0" layoutY="601.0" onMouseClicked="#handleSamboanSelected" text="Samboan" textFill="#b60dcd">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lCarcarCity" layoutX="702.0" layoutY="376.0" onMouseClicked="#handleCarcarCitySelected" text="Carcar City" textFill="#56bc12">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivBadian" fitHeight="56.0" fitWidth="45.0" layoutX="586.0" layoutY="443.0" onMouseClicked="#handleBadianSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Badian.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lTuburan" layoutX="675.0" layoutY="181.0" onMouseClicked="#handleTuburanSelected" text="Tuburan" textFill="#e12828">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lSibonga" layoutX="682.0" layoutY="404.0" onMouseClicked="#handleSibongaSelected" text="Sibonga" textFill="#b7d347">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivArgao" fitHeight="66.0" fitWidth="52.0" layoutX="631.0" layoutY="413.0" onMouseClicked="#handleArgaoSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Argao.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lBarili" layoutX="601.0" layoutY="357.0" onMouseClicked="#handleBariliSelected" text="Barili" textFill="#75a8e5">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivPinamungajan" fitHeight="46.0" fitWidth="36.0" layoutX="664.0" layoutY="307.0" onMouseClicked="#handlePinamungajanSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Pinamungahan.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lAsturias" layoutX="657.0" layoutY="214.0" onMouseClicked="#handleAsturiasSelected" text="Asturias" textFill="#e86ab7">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivAlcoy" fitHeight="42.0" fitWidth="43.0" layoutX="609.0" layoutY="506.0" onMouseClicked="#handleAlcoySelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Alcoy.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lBoljoon" layoutX="638.0" layoutY="553.0" onMouseClicked="#handleBoljoonSelected" text="Boljoon" textFill="#fca80c">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lGinatilan" layoutX="507.0" layoutY="568.0" onMouseClicked="#handleGinatilanSelected" text="Ginatilan" textFill="#f82e7f">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivAsturias" fitHeight="39.0" fitWidth="46.0" layoutX="708.0" layoutY="209.0" onMouseClicked="#handleAsturiasSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Asturias.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lOslob" layoutX="616.0" layoutY="600.0" onMouseClicked="#handleOslobSelected" text="Oslob" textFill="#f26ca4">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivMoalboal" fitHeight="38.0" fitWidth="42.0" layoutX="595.0" layoutY="419.0" onMouseClicked="#handleMoalboalSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Moalboal.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lMoalboal" layoutX="532.0" layoutY="422.0" onMouseClicked="#handleMoalboalSelected" text="Moalboal" textFill="#4d5e75">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivToledoCity" fitHeight="52.0" fitWidth="59.0" layoutX="669.0" layoutY="271.0" onMouseClicked="#handleToledoCitySelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Toledo-City.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivCarcarCity" fitHeight="49.0" fitWidth="39.0" layoutX="662.0" layoutY="351.0" onMouseClicked="#handleCarcarCitySelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Carcar-City.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lDumanjug" layoutX="548.0" layoutY="381.0" onMouseClicked="#handleDumanjugSelected" text="Dumanjug" textFill="#307bd0">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivSantander" fitHeight="25.0" fitWidth="21.0" layoutX="569.0" layoutY="618.0" onMouseClicked="#handleSantanderSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Santander.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivRonda" fitHeight="28.0" fitWidth="39.0" layoutX="604.0" layoutY="406.0" onMouseClicked="#handleRondaSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Ronda.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lAlcantara" layoutX="534.0" layoutY="409.0" onMouseClicked="#handleAlcantaraSelected" text="Alcantara" textFill="#85c39c">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lArgao" layoutX="682.0" layoutY="440.0" onMouseClicked="#handleArgaoSelected" text="Argao" textFill="#7042c6">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivMalabuyoc" fitHeight="50.0" fitWidth="40.0" layoutX="572.0" layoutY="532.0" onMouseDragged="#handleMalabuyocSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/mALABUYOC.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivSibonga" fitHeight="49.0" fitWidth="39.0" layoutX="644.0" layoutY="391.0" onMouseClicked="#handleSibongaSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Sibonga.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lAlegria" layoutX="533.0" layoutY="497.0" onMouseClicked="#handleAlegriaSelected" text="Alegria" textFill="#944997">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lAloguinsan" layoutX="582.0" layoutY="331.0" onMouseClicked="#handleAloguinsanSelected" text="Aloguinsan" textFill="#a9c929">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lRonda" layoutX="558.0" layoutY="398.0" onMouseClicked="#handleRondaSelected" text="Ronda" textFill="#d7539d">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lToledoCity" layoutX="605.0" layoutY="280.0" onMouseClicked="#handleToledoCitySelected" text="Toledo City" textFill="#86b95a">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lMalabuyoc" layoutX="500.0" layoutY="536.0" onMouseDragged="#handleMalabuyocSelected" text="Malabuyoc" textFill="#cd8bd0">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lDalaguete" layoutX="656.0" layoutY="489.0" onMouseClicked="#handleDalagueteSelected" text="Dalaguete" textFill="#e15cd6">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lPinamungajan" layoutX="576.0" layoutY="312.0" onMouseClicked="#handlePinamungajanSelected" text="Pinamungajan" textFill="#d34091">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivAlcantara" fitHeight="21.0" fitWidth="40.0" layoutX="600.0" layoutY="420.0" onMouseClicked="#handleAlcantaraSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Alcantara.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivAloguinsan" fitHeight="33.0" fitWidth="33.0" layoutX="649.0" layoutY="335.0" onMouseClicked="#handleAloguinsanSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Aloguinsan.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivBacolod" fitHeight="100.0" fitWidth="147.0" layoutX="527.0" layoutY="113.0" onMouseClicked="#handleBacolodSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Bacolod.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivBarili" fitHeight="54.0" fitWidth="43.0" layoutX="627.0" layoutY="351.0" onMouseClicked="#handleBariliSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Barili.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivZamboanga" fitHeight="150.0" fitWidth="200.0" layoutX="712.0" layoutY="467.0" onMouseClicked="#handleZamboangaSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Zamboanga.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lBacolod" layoutX="564.0" layoutY="146.0" onMouseClicked="#handleBacolodSelected" text="Bacolod" textFill="#fcfcfc">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lZamboanga" layoutX="718.0" layoutY="550.0" onMouseClicked="#handleZamboangaSelected" text="Zamboanga" textFill="WHITE">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lSantander" layoutX="502.0" layoutY="622.0" onMouseClicked="#handleSantanderSelected" text="Santander" textFill="#7f7a80">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="ivDumaguete" fitHeight="49.0" fitWidth="57.0" layoutX="506.0" layoutY="242.0" onMouseClicked="#handleDumagueteSelected" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@res/Cebu%20Muns/Dumaguete.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lDumaguete" layoutX="497.0" layoutY="288.0" onMouseClicked="#handleDumagueteSelected" text="Dumaguete" textFill="#c69222">
-               <font>
-                  <Font name="Microsoft Tai Le" size="15.0" />
-               </font>
-            </Label>
-            <ListView fx:id="lvAnnouncements" layoutX="1033.0" layoutY="46.0" prefHeight="552.0" prefWidth="288.0" />
-            <ListView fx:id="lvFAQ" layoutX="23.0" layoutY="50.0" prefHeight="552.0" prefWidth="288.0" />
-            <Label layoutX="75.0" layoutY="-11.0" prefHeight="62.0" prefWidth="185.0" text="Frequently Asked&#10;Questions" textAlignment="CENTER">
-               <font>
-                  <Font name="Microsoft Tai Le Bold" size="22.0" />
-               </font>
-            </Label>
+            <HBox fx:id="hbSubMap" alignment="CENTER" prefHeight="635.0" prefWidth="1157.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="23.0" layoutY="-11.0">
+                     <children>
+                        <Label layoutX="75.0" layoutY="-11.0" prefHeight="62.0" prefWidth="185.0" text="Frequently Asked&#10;Questions" textAlignment="CENTER">
+                           <font>
+                              <Font name="Microsoft Tai Le Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <ListView fx:id="lvFAQ" layoutX="23.0" layoutY="50.0" prefHeight="552.0" prefWidth="288.0" />
+                     </children>
+                  </VBox>
+                  <Region prefHeight="635.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                  <Pane layoutX="482.0" layoutY="11.0">
+                     <children>
+                        <ImageView fitHeight="635.0" fitWidth="393.0" opacity="0.7" pickOnBounds="true">
+                           <image>
+                              <Image url="@res/white.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lPinamungajan" layoutX="94.0" layoutY="301.0" onMouseClicked="#handlePinamungajanSelected" text="Pinamungajan" textFill="#d34091">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lDumaguete" layoutX="15.0" layoutY="277.0" onMouseClicked="#handleDumagueteSelected" text="Dumaguete" textFill="#c69222">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivSibonga" fitHeight="49.0" fitWidth="39.0" layoutX="162.0" layoutY="380.0" onMouseClicked="#handleSibongaSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Sibonga.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="360.0" fitWidth="265.0" layoutX="198.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Unimportant.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivBarili" fitHeight="54.0" fitWidth="43.0" layoutX="145.0" layoutY="340.0" onMouseClicked="#handleBariliSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Barili.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivBadian" fitHeight="56.0" fitWidth="45.0" layoutX="104.0" layoutY="432.0" onMouseClicked="#handleBadianSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Badian.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivRonda" fitHeight="28.0" fitWidth="39.0" layoutX="122.0" layoutY="395.0" onMouseClicked="#handleRondaSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Ronda.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lBadian" layoutX="58.0" layoutY="438.0" onMouseClicked="#handleBadianSelected" text="Badian" textFill="#6f734c">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivTuburan" fitHeight="65.0" fitWidth="49.0" layoutX="242.0" layoutY="154.0" onMouseClicked="#handleTuburanSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Tuburan.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lCarcarCity" layoutX="220.0" layoutY="365.0" onMouseClicked="#handleCarcarCitySelected" text="Carcar City" textFill="#56bc12">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lSantander" layoutX="20.0" layoutY="611.0" onMouseClicked="#handleSantanderSelected" text="Santander" textFill="#7f7a80">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivBoljoon" fitHeight="42.0" fitWidth="45.0" layoutX="119.0" layoutY="522.0" onMouseClicked="#handleBoljoonSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Boljoon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivCarcarCity" fitHeight="49.0" fitWidth="39.0" layoutX="180.0" layoutY="340.0" onMouseClicked="#handleCarcarCitySelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Carcar-City.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivBacolod" fitHeight="100.0" fitWidth="147.0" layoutX="45.0" layoutY="102.0" onMouseClicked="#handleBacolodSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Bacolod.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lBacolod" layoutX="82.0" layoutY="135.0" onMouseClicked="#handleBacolodSelected" text="Bacolod" textFill="#fcfcfc">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lMoalboal" layoutX="50.0" layoutY="411.0" onMouseClicked="#handleMoalboalSelected" text="Moalboal" textFill="#4d5e75">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lTuburan" layoutX="193.0" layoutY="170.0" onMouseClicked="#handleTuburanSelected" text="Tuburan" textFill="#e12828">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lAloguinsan" layoutX="100.0" layoutY="320.0" onMouseClicked="#handleAloguinsanSelected" text="Aloguinsan" textFill="#a9c929">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivArgao" fitHeight="66.0" fitWidth="52.0" layoutX="149.0" layoutY="402.0" onMouseClicked="#handleArgaoSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Argao.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivMoalboal" fitHeight="38.0" fitWidth="42.0" layoutX="113.0" layoutY="408.0" onMouseClicked="#handleMoalboalSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Moalboal.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lBalamban" layoutX="158.0" layoutY="235.0" onMouseClicked="#handleBalambanSelected" text="Balamban" textFill="#e19f3d">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lAlcoy" layoutX="171.0" layoutY="508.0" onMouseClicked="#handleAlcoySelected" text="Alcoy" textFill="#fa0c0c">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivAsturias" fitHeight="39.0" fitWidth="46.0" layoutX="226.0" layoutY="198.0" onMouseClicked="#handleAsturiasSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Asturias.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivSantander" fitHeight="25.0" fitWidth="21.0" layoutX="87.0" layoutY="607.0" onMouseClicked="#handleSantanderSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Santander.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivPinamungajan" fitHeight="46.0" fitWidth="36.0" layoutX="182.0" layoutY="296.0" onMouseClicked="#handlePinamungajanSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Pinamungahan.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lArgao" layoutX="200.0" layoutY="429.0" onMouseClicked="#handleArgaoSelected" text="Argao" textFill="#7042c6">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lAlegria" layoutX="51.0" layoutY="486.0" onMouseClicked="#handleAlegriaSelected" text="Alegria" textFill="#944997">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivDumaguete" fitHeight="49.0" fitWidth="57.0" layoutX="24.0" layoutY="231.0" onMouseClicked="#handleDumagueteSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Dumaguete.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lMalabuyoc" layoutX="18.0" layoutY="525.0" onMouseDragged="#handleMalabuyocSelected" text="Malabuyoc" textFill="#cd8bd0">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lAsturias" layoutX="175.0" layoutY="203.0" onMouseClicked="#handleAsturiasSelected" text="Asturias" textFill="#e86ab7">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivAlcantara" fitHeight="21.0" fitWidth="40.0" layoutX="118.0" layoutY="409.0" onMouseClicked="#handleAlcantaraSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Alcantara.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lToledoCity" layoutX="123.0" layoutY="269.0" onMouseClicked="#handleToledoCitySelected" text="Toledo City" textFill="#86b95a">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivZamboanga" fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="456.0" onMouseClicked="#handleZamboangaSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Zamboanga.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lBarili" layoutX="119.0" layoutY="346.0" onMouseClicked="#handleBariliSelected" text="Barili" textFill="#75a8e5">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lGinatilan" layoutX="25.0" layoutY="557.0" onMouseClicked="#handleGinatilanSelected" text="Ginatilan" textFill="#f82e7f">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivDumanjug" fitHeight="35.0" fitWidth="41.0" layoutX="128.0" layoutY="374.0" onMouseClicked="#handleDumanjugSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Dumanjug.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lRonda" layoutX="76.0" layoutY="387.0" onMouseClicked="#handleRondaSelected" text="Ronda" textFill="#d7539d">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lSibonga" layoutX="200.0" layoutY="393.0" onMouseClicked="#handleSibongaSelected" text="Sibonga" textFill="#b7d347">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lAlcantara" layoutX="52.0" layoutY="398.0" onMouseClicked="#handleAlcantaraSelected" text="Alcantara" textFill="#85c39c">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lDumanjug" layoutX="66.0" layoutY="370.0" onMouseClicked="#handleDumanjugSelected" text="Dumanjug" textFill="#307bd0">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lZamboanga" layoutX="236.0" layoutY="539.0" onMouseClicked="#handleZamboangaSelected" text="Zamboanga" textFill="WHITE">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivToledoCity" fitHeight="52.0" fitWidth="59.0" layoutX="187.0" layoutY="260.0" onMouseClicked="#handleToledoCitySelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Toledo-City.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivAlegria" fitHeight="50.0" fitWidth="40.0" layoutX="95.0" layoutY="475.0" onMouseClicked="#handleAlegriaSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Alegria.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivDalaguete" fitHeight="58.0" fitWidth="54.0" layoutX="130.0" layoutY="445.0" onMouseClicked="#handleDalagueteSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Dalaguete.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lDalaguete" layoutX="174.0" layoutY="478.0" onMouseClicked="#handleDalagueteSelected" text="Dalaguete" textFill="#e15cd6">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivBalamban" fitHeight="49.0" fitWidth="71.0" layoutX="217.0" layoutY="229.0" onMouseClicked="#handleBalambanSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Balamban.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivAlcoy" fitHeight="42.0" fitWidth="43.0" layoutX="127.0" layoutY="495.0" onMouseClicked="#handleAlcoySelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Alcoy.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivMalabuyoc" fitHeight="50.0" fitWidth="40.0" layoutX="90.0" layoutY="521.0" onMouseDragged="#handleMalabuyocSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/mALABUYOC.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lOslob" layoutX="134.0" layoutY="589.0" onMouseClicked="#handleOslobSelected" text="Oslob" textFill="#f26ca4">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivOslob" fitHeight="74.0" fitWidth="54.0" layoutX="99.0" layoutY="552.0" onMouseClicked="#handleOslobSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/oSLOB.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lSamboan" layoutX="23.0" layoutY="590.0" onMouseClicked="#handleSamboanSelected" text="Samboan" textFill="#b60dcd">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivAloguinsan" fitHeight="33.0" fitWidth="33.0" layoutX="167.0" layoutY="324.0" onMouseClicked="#handleAloguinsanSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Aloguinsan.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivGinatilan" fitHeight="42.0" fitWidth="36.0" layoutX="83.0" layoutY="554.0" onMouseClicked="#handleGinatilanSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Ginatilan.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lBoljoon" layoutX="156.0" layoutY="542.0" onMouseClicked="#handleBoljoonSelected" text="Boljoon" textFill="#fca80c">
+                           <font>
+                              <Font name="Microsoft Tai Le" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ivSamboan" fitHeight="32.0" fitWidth="26.0" layoutX="86.0" layoutY="582.0" onMouseClicked="#handleSamboanSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Samboan.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="21.0" layoutY="37.0" text="Press a municipality label to &#10;view bus details and whereabouts" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Region prefHeight="635.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="TOP_CENTER" layoutX="1033.0" layoutY="18.0">
+                     <children>
+                        <Label prefHeight="62.0" prefWidth="206.0" text=" &#10;ANNOUNCEMENTS" textAlignment="CENTER">
+                           <font>
+                              <Font name="Microsoft Tai Le Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <ListView fx:id="lvAnnouncements" layoutX="1033.0" layoutY="46.0" prefHeight="552.0" prefWidth="288.0" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="55.0" right="55.0" />
+               </padding>
+            </HBox>
          </children>
       </Pane>
-      <Pane fx:id="pTapToStart" onMouseClicked="#handleStartClicked" prefHeight="0.0" prefWidth="1340.0" visible="false">
+      <Pane fx:id="pTapToStart" onMouseClicked="#handleStartClicked" prefHeight="0.0" prefWidth="1340.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="632.0" prefWidth="1340.0">
+            <HBox fx:id="hbTap" alignment="CENTER" prefHeight="632.0" prefWidth="1340.0">
                <children>
                   <ImageView fitHeight="430.0" fitWidth="554.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -478,14 +500,9 @@
                   </VBox>
                   <Pane prefHeight="335.0" prefWidth="558.0">
                      <children>
-                        <ImageView fitHeight="370.0" fitWidth="468.0" layoutX="26.0" layoutY="84.0" pickOnBounds="true">
+                        <ImageView fx:id="ivTerminalPath" fitHeight="360.0" fitWidth="494.0" layoutX="2.0" layoutY="68.0" pickOnBounds="true">
                            <image>
-                              <Image url="@res/terminal.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="ivTerminalPath" fitHeight="360.0" fitWidth="606.0" layoutX="2.0" layoutY="68.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@res/Terminal%20Map/RW-1.png" />
+                              <Image url="@res/Terminal%20Map/GIF/RW-1.gif" />
                            </image>
                         </ImageView>
                      </children>

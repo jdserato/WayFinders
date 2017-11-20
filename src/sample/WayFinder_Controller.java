@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -30,6 +28,7 @@ import static javafx.scene.layout.BackgroundRepeat.NO_REPEAT;
 public class WayFinder_Controller implements Initializable {
     public Pane pMap, pTapToStart;
     public VBox vbMain, vbDetails;
+    public HBox hbSubMap, hbTap;
     public TableView<Bus> tvBusDetails;
     public TableColumn<Bus, String> tcBusCompany, tcBusType, tccLocation, tcWingArea, tcBayNumber, tcDestination, tcLastTrip, tcFirstTrip, tcTime, tcMaxFare;
     public TextField taNumberOfBusCompanies, taNumberOfBuses, taFareAircon, taFareOrdinary;
@@ -37,7 +36,8 @@ public class WayFinder_Controller implements Initializable {
     public Label lTuburan, lAsturias, lBalamban, lToledoCity, lPinamungajan, lAloguinsan, lBarili, lDumanjug, lRonda, lAlcantara, lMoalboal, lBadian, lAlegria, lMalabuyoc, lGinatilan, lSamboan, lOslob, lBoljoon, lAlcoy, lDalaguete, lArgao, lSibonga, lCarcarCity, lZamboanga, lBacolod, lSantander, lDumaguete;
     public ImageView ivBackToMap, ivPrev, ivNext, ivTerminalPath;
     public Label lBackToMap, lDestination, lPrev, lNext;
-    public ListView<String> lvAnnouncements, lvFAQ;
+    public ListView<TextArea> lvAnnouncements;
+    public ListView<MenuButton> lvFAQ;
 
     private ObservableList<Bus> qualifier = FXCollections.observableArrayList();
     private ObservableList<Bus> buses = FXCollections.observableArrayList();
@@ -45,30 +45,64 @@ public class WayFinder_Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(60), new Runnable() {
-            @Override
-            public void run() {
-                vbDetails.setVisible(false);
-                pMap.setVisible(true);
-                pMap.setOpacity(0.25);
-                pTapToStart.setVisible(true);
-            }
-        }, true);
-        idleMonitor.register(vbDetails, Event.ANY);
-
         Rectangle2D screen = Screen.getPrimary().getVisualBounds();
         Image background = new Image("sample/res/Background.png", screen.getWidth(), screen.getHeight(), false, true);
         vbMain.setBackground(new Background(new BackgroundImage(background, NO_REPEAT, NO_REPEAT, DEFAULT, BackgroundSize.DEFAULT)));
         vbMain.setPrefHeight(screen.getHeight());
         vbMain.setPrefWidth(screen.getWidth());
+        hbSubMap.setPrefHeight(screen.getHeight());
+        hbSubMap.setPrefWidth(screen.getWidth());
+        hbTap.setPrefHeight(screen.getHeight());
+        hbTap.setPrefWidth(screen.getWidth());
 
+        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(60), () -> {
+            vbDetails.setVisible(false);
+            pMap.setVisible(true);
+            pMap.setOpacity(0.25);
+            pTapToStart.setVisible(true);
+        }, true);
+        idleMonitor.register(vbDetails, Event.ANY);
+
+        updateDatabase();
+
+        tcBusCompany.setCellValueFactory(new PropertyValueFactory<>("busCompany"));
+        tcBusType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        tcWingArea.setCellValueFactory(new PropertyValueFactory<>("wingArea"));
+        tcBayNumber.setCellValueFactory(new PropertyValueFactory<>("bayNumber"));
+        tcDestination.setCellValueFactory(new PropertyValueFactory<>("destination"));
+        tcFirstTrip.setCellValueFactory(new PropertyValueFactory<>("departure"));
+        tcLastTrip.setCellValueFactory(new PropertyValueFactory<>("lastTrip"));
+        tcTime.setCellValueFactory(new PropertyValueFactory<>("nextTime"));
+        tcMaxFare.setCellValueFactory(new PropertyValueFactory<>("fares"));
+
+        tvBusDetails.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                newValue = oldValue;
+            }
+            String ivPath = "sample/res/Terminal Map/GIF/";
+            switch (newValue.getWingArea()) {
+                case "Left Wing":
+                    ivPath = ivPath.concat("LW-");
+                    break;
+                case "Center Wing":
+                    ivPath = ivPath.concat("CW-");
+                    break;
+                default:
+                    ivPath = ivPath.concat("RW-");
+            }
+            ivPath = ivPath.concat(newValue.getBayNumber() + ".gif");
+            ivTerminalPath.setImage(new Image(ivPath));
+        });
+    }
+
+    private void updateDatabase() {
         String sql = "SELECT *" +
                 "FROM municipality_info";
 
         try (Connection conn = this.connect()) {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-
+            municipalities.clear();
             while (rs.next()) {
                 municipalities.add(new Municipality(rs.getString("name"), rs.getInt("fare_ordinary"), rs.getInt("fare_aircon"), null, null, null));
             }
@@ -141,7 +175,7 @@ public class WayFinder_Controller implements Initializable {
         try (Connection conn = this.connect()) {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-
+            buses.clear();
             while (rs.next()) {
                 Municipality thisMunicipality = null;
                 for (Municipality m : municipalities) {
@@ -151,7 +185,7 @@ public class WayFinder_Controller implements Initializable {
                     }
                 }
                 String times = rs.getString("times");
-                Date[] timeLine = new Date[50];
+                java.util.Date[] timeLine = new java.util.Date[50];
                 int j = 0;
                 while (true){
                     int hr = 0, min = 0;
@@ -186,37 +220,67 @@ public class WayFinder_Controller implements Initializable {
             System.err.println(e.getMessage());
         }
 
-        tcBusCompany.setCellValueFactory(new PropertyValueFactory<>("busCompany"));
-        tcBusType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        tcWingArea.setCellValueFactory(new PropertyValueFactory<>("wingArea"));
-        tcBayNumber.setCellValueFactory(new PropertyValueFactory<>("bayNumber"));
-        tcDestination.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        tcFirstTrip.setCellValueFactory(new PropertyValueFactory<>("departure"));
-        tcLastTrip.setCellValueFactory(new PropertyValueFactory<>("lastTrip"));
-        tcTime.setCellValueFactory(new PropertyValueFactory<>("nextTime"));
-        tcMaxFare.setCellValueFactory(new PropertyValueFactory<>("fares"));
+        sql = "SELECT *" +
+                "FROM faq";
+        try (Connection conn = this.connect()) {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
 
-        tvBusDetails.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Bus>() {
-            @Override
-            public void changed(ObservableValue<? extends Bus> observable, Bus oldValue, Bus newValue) {
-                if (newValue == null) {
-                    newValue = oldValue;
+            ObservableList<MenuButton> mbs = FXCollections.observableArrayList();
+            ImageView comfortRoom = new ImageView("sample/res/Terminal Map/RW-7.png");
+            comfortRoom.setFitWidth(270);
+            comfortRoom.setFitHeight(270);
+            ImageView diningArea = new ImageView("sample/res/Terminal Map/RW-6.png");
+            diningArea.setFitHeight(270);
+            diningArea.setFitWidth(270);
+            while (rs.next()) {
+                ImageView help = new ImageView("sample/res/help.png");
+                help.setFitHeight(10.5);
+                help.setFitWidth(10.5);
+                MenuItem menuItem;
+                if (rs.getString("answer").contains("ComfortRoom")) {
+                    menuItem = new MenuItem("", comfortRoom);
+                } else if (rs.getString("answer").contains("DiningArea")) {
+                    menuItem = new MenuItem("", diningArea);
+                } else {
+                    menuItem = new MenuItem(rs.getString("answer"));
                 }
-                String ivPath = "sample/res/Terminal Map/";
-                switch (newValue.getWingArea()) {
-                    case "Left Wing":
-                        ivPath = ivPath.concat("LW-");
-                        break;
-                    case "Center Wing":
-                        ivPath = ivPath.concat("CW-");
-                        break;
-                    default:
-                        ivPath = ivPath.concat("RW-");
-                }
-                ivPath = ivPath.concat(newValue.getBayNumber() + ".png");
-                ivTerminalPath.setImage(new Image(ivPath));
+                MenuButton mb = new MenuButton(rs.getString("question"), help, menuItem);
+                mb.setPrefSize(270, 20);
+                mbs.add(mb);
             }
-        });
+            lvFAQ.setItems(mbs);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        sql = "SELECT *" +
+                "FROM announcements";
+        try (Connection conn = this.connect()) {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            ObservableList<TextArea> ann = FXCollections.observableArrayList();
+            while (rs.next()) {
+                TextArea ta = new TextArea(rs.getString("announcement"));
+                ta.setEditable(false);
+                ta.setWrapText(true);
+                ta.setPrefWidth(270);
+                ta.setPrefHeight(Math.ceil(rs.getString("announcement").length() / 45) * 30);
+                ann.add(ta);
+            }
+            if (ann.size() == 0) {
+                TextArea ta = new TextArea("No announcements for today.");
+                ta.setEditable(false);
+                ta.setWrapText(true);
+                ta.setPrefWidth(270);
+                ta.setPrefHeight(30);
+                ann.add(ta);
+            }
+            lvAnnouncements.setItems(ann);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     @FXML
@@ -513,7 +577,7 @@ public class WayFinder_Controller implements Initializable {
         qualifier = bubbleSort(qualifier);
         tvBusDetails.setItems(qualifier);
 
-        String ivPath = "sample/res/Terminal Map/";
+        String ivPath = "sample/res/Terminal Map/GIF/";
         switch (qualifier.get(0).getWingArea()) {
             case "Left Wing":
                 ivPath = ivPath.concat("LW-");
@@ -524,7 +588,7 @@ public class WayFinder_Controller implements Initializable {
             default:
                 ivPath = ivPath.concat("RW-");
         }
-        ivPath = ivPath.concat(qualifier.get(0).getBayNumber() + ".png");
+        ivPath = ivPath.concat(qualifier.get(0).getBayNumber() + ".gif");
         ivTerminalPath.setImage(new Image(ivPath));
 
         taNumberOfBusCompanies.setText(qualifier.size() + "");
@@ -550,6 +614,7 @@ public class WayFinder_Controller implements Initializable {
         vbDetails.setVisible(false);
         pMap.setVisible(true);
         pMap.setOpacity(1.0);
+        updateDatabase();
     }
 
     @FXML
