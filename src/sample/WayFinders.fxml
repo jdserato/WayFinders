@@ -28,7 +28,7 @@
                               <Font name="Microsoft Tai Le Bold" size="22.0" />
                            </font>
                         </Label>
-                        <ListView fx:id="lvFAQ" layoutX="23.0" layoutY="50.0" prefHeight="552.0" prefWidth="288.0" />
+                        <ListView fx:id="lvFAQ" focusTraversable="false" layoutX="23.0" layoutY="50.0" prefHeight="552.0" prefWidth="288.0" />
                      </children>
                   </VBox>
                   <Region prefHeight="635.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
@@ -44,16 +44,16 @@
                               <Font name="Microsoft Tai Le" size="15.0" />
                            </font>
                         </Label>
+                        <ImageView fx:id="ivDalaguete" fitHeight="58.0" fitWidth="54.0" layoutX="130.0" layoutY="445.0" onMouseClicked="#handleDalagueteSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Dalaguete.png" />
+                           </image>
+                        </ImageView>
                         <Label fx:id="lDumaguete" layoutX="15.0" layoutY="277.0" onMouseClicked="#handleDumagueteSelected" text="Dumaguete" textFill="#c69222">
                            <font>
                               <Font name="Microsoft Tai Le" size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="ivSibonga" fitHeight="49.0" fitWidth="39.0" layoutX="162.0" layoutY="380.0" onMouseClicked="#handleSibongaSelected" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@res/Cebu%20Muns/Sibonga.png" />
-                           </image>
-                        </ImageView>
                         <ImageView fitHeight="360.0" fitWidth="265.0" layoutX="198.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@res/Cebu%20Muns/Unimportant.png" />
@@ -67,11 +67,6 @@
                         <ImageView fx:id="ivBadian" fitHeight="56.0" fitWidth="45.0" layoutX="104.0" layoutY="432.0" onMouseClicked="#handleBadianSelected" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@res/Cebu%20Muns/Badian.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="ivRonda" fitHeight="28.0" fitWidth="39.0" layoutX="122.0" layoutY="395.0" onMouseClicked="#handleRondaSelected" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@res/Cebu%20Muns/Ronda.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="lBadian" layoutX="58.0" layoutY="438.0" onMouseClicked="#handleBadianSelected" text="Badian" textFill="#6f734c">
@@ -189,11 +184,6 @@
                               <Font name="Microsoft Tai Le" size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="ivAlcantara" fitHeight="21.0" fitWidth="40.0" layoutX="118.0" layoutY="409.0" onMouseClicked="#handleAlcantaraSelected" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@res/Cebu%20Muns/Alcantara.png" />
-                           </image>
-                        </ImageView>
                         <Label fx:id="lToledoCity" layoutX="123.0" layoutY="269.0" onMouseClicked="#handleToledoCitySelected" text="Toledo City" textFill="#86b95a">
                            <font>
                               <Font name="Microsoft Tai Le" size="15.0" />
@@ -254,11 +244,6 @@
                               <Image url="@res/Cebu%20Muns/Alegria.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="ivDalaguete" fitHeight="58.0" fitWidth="54.0" layoutX="130.0" layoutY="445.0" onMouseClicked="#handleDalagueteSelected" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@res/Cebu%20Muns/Dalaguete.png" />
-                           </image>
-                        </ImageView>
                         <Label fx:id="lDalaguete" layoutX="174.0" layoutY="478.0" onMouseClicked="#handleDalagueteSelected" text="Dalaguete" textFill="#e15cd6">
                            <font>
                               <Font name="Microsoft Tai Le" size="15.0" />
@@ -309,6 +294,21 @@
                               <Font name="Microsoft Tai Le" size="15.0" />
                            </font>
                         </Label>
+                        <ImageView fx:id="ivRonda" fitHeight="28.0" fitWidth="39.0" layoutX="122.0" layoutY="395.0" onMouseClicked="#handleRondaSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Ronda.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivAlcantara" fitHeight="21.0" fitWidth="40.0" layoutX="118.0" layoutY="409.0" onMouseClicked="#handleAlcantaraSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Alcantara.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="ivSibonga" fitHeight="49.0" fitWidth="39.0" layoutX="162.0" layoutY="380.0" onMouseClicked="#handleSibongaSelected" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/Cebu%20Muns/Sibonga.png" />
+                           </image>
+                        </ImageView>
                         <ImageView fx:id="ivSamboan" fitHeight="32.0" fitWidth="26.0" layoutX="86.0" layoutY="582.0" onMouseClicked="#handleSamboanSelected" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@res/Cebu%20Muns/Samboan.png" />
@@ -329,7 +329,7 @@
                               <Font name="Microsoft Tai Le Bold" size="22.0" />
                            </font>
                         </Label>
-                        <ListView fx:id="lvAnnouncements" layoutX="1033.0" layoutY="46.0" prefHeight="552.0" prefWidth="288.0" />
+                        <ListView fx:id="lvAnnouncements" focusTraversable="false" layoutX="1033.0" layoutY="46.0" prefHeight="552.0" prefWidth="288.0" />
                      </children>
                   </VBox>
                </children>
@@ -430,12 +430,12 @@
                                        <children>
                                           <VBox alignment="TOP_RIGHT" prefHeight="291.0" prefWidth="294.0" spacing="3.0">
                                              <children>
-                                                <Label text="Total Number of Bus Companies">
+                                                <Label text="Travel Time">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="Total Number of Buses">
+                                                <Label text="Travel Distance">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -455,14 +455,14 @@
                                                 <Insets bottom="5.0" />
                                              </HBox.margin>
                                           </VBox>
-                                          <VBox prefHeight="241.0" prefWidth="66.0" spacing="3.0">
+                                          <VBox prefHeight="134.0" prefWidth="118.0" spacing="3.0">
                                              <children>
-                                                <TextField fx:id="taNumberOfBusCompanies" editable="false" maxHeight="-Infinity" prefHeight="1.0" prefWidth="231.0" VBox.vgrow="NEVER">
+                                                <TextField fx:id="taTravelTime" editable="false" maxHeight="-Infinity" prefHeight="1.0" prefWidth="231.0" VBox.vgrow="NEVER">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="taNumberOfBuses" editable="false" maxHeight="-Infinity" prefHeight="1.0" prefWidth="231.0" VBox.vgrow="NEVER">
+                                                <TextField fx:id="taTravelDistance" editable="false" maxHeight="-Infinity" prefHeight="1.0" prefWidth="231.0" VBox.vgrow="NEVER">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>

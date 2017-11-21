@@ -31,7 +31,7 @@ public class WayFinder_Controller implements Initializable {
     public HBox hbSubMap, hbTap;
     public TableView<Bus> tvBusDetails;
     public TableColumn<Bus, String> tcBusCompany, tcBusType, tccLocation, tcWingArea, tcBayNumber, tcDestination, tcLastTrip, tcFirstTrip, tcTime, tcMaxFare;
-    public TextField taNumberOfBusCompanies, taNumberOfBuses, taFareAircon, taFareOrdinary;
+    public TextField taTravelDistance, taTravelTime, taFareAircon, taFareOrdinary;
     public ImageView ivTuburan, ivAsturias, ivBalamban, ivToledoCity, ivPinamungajan, ivAloguinsan, ivBarili, ivDumanjug, ivRonda, ivAlcantara, ivMoalboal, ivBadian, ivAlegria, ivMalabuyoc, ivGinatilan, ivSamboan, ivOslob, ivBoljoon, ivAlcoy, ivDalaguete, ivArgao, ivSibonga, ivCarcarCity, ivZamboanga, ivBacolod, ivSantander, ivDumaguete;
     public Label lTuburan, lAsturias, lBalamban, lToledoCity, lPinamungajan, lAloguinsan, lBarili, lDumanjug, lRonda, lAlcantara, lMoalboal, lBadian, lAlegria, lMalabuyoc, lGinatilan, lSamboan, lOslob, lBoljoon, lAlcoy, lDalaguete, lArgao, lSibonga, lCarcarCity, lZamboanga, lBacolod, lSantander, lDumaguete;
     public ImageView ivBackToMap, ivPrev, ivNext, ivTerminalPath;
@@ -104,7 +104,7 @@ public class WayFinder_Controller implements Initializable {
             ResultSet rs = st.executeQuery(sql);
             municipalities.clear();
             while (rs.next()) {
-                municipalities.add(new Municipality(rs.getString("name"), rs.getInt("fare_ordinary"), rs.getInt("fare_aircon"), null, null, null));
+                municipalities.add(new Municipality(rs.getString("name"), rs.getInt("fare_ordinary"), rs.getInt("fare_aircon"), null, null, null, rs.getString("travel_time"), rs.getString("travel_distance")));
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -227,25 +227,31 @@ public class WayFinder_Controller implements Initializable {
             ResultSet rs = st.executeQuery(sql);
 
             ObservableList<MenuButton> mbs = FXCollections.observableArrayList();
-            ImageView comfortRoom = new ImageView("sample/res/Terminal Map/RW-7.png");
+            ImageView comfortRoom = new ImageView("sample/res/Terminal Map/GIF/Comfort_Room.gif");
             comfortRoom.setFitWidth(270);
             comfortRoom.setFitHeight(270);
-            ImageView diningArea = new ImageView("sample/res/Terminal Map/RW-6.png");
+            ImageView diningArea = new ImageView("sample/res/Terminal Map/GIF/Dining_Area.jpg");
             diningArea.setFitHeight(270);
             diningArea.setFitWidth(270);
+            ImageView chargingStation = new ImageView("sample/res/Terminal Map/GIF/Charging_Station.gif");
+            chargingStation.setFitHeight(270);
+            chargingStation.setFitWidth(270);
             while (rs.next()) {
                 ImageView help = new ImageView("sample/res/help.png");
                 help.setFitHeight(10.5);
                 help.setFitWidth(10.5);
                 MenuItem menuItem;
-                if (rs.getString("answer").contains("ComfortRoom")) {
+                if (rs.getString("answer").contains("Comfort_Room")) {
                     menuItem = new MenuItem("", comfortRoom);
-                } else if (rs.getString("answer").contains("DiningArea")) {
+                } else if (rs.getString("answer").contains("Dining_Area")) {
                     menuItem = new MenuItem("", diningArea);
+                } else if (rs.getString("answer").contains("Charging_Station")) {
+                    menuItem = new MenuItem("", chargingStation);
                 } else {
                     menuItem = new MenuItem(rs.getString("answer"));
                 }
                 MenuButton mb = new MenuButton(rs.getString("question"), help, menuItem);
+                mb.setFocusTraversable(false);
                 mb.setPrefSize(270, 20);
                 mbs.add(mb);
             }
@@ -267,6 +273,7 @@ public class WayFinder_Controller implements Initializable {
                 ta.setWrapText(true);
                 ta.setPrefWidth(270);
                 ta.setPrefHeight(Math.ceil(rs.getString("announcement").length() / 45) * 30);
+                ta.setFocusTraversable(false);
                 ann.add(ta);
             }
             if (ann.size() == 0) {
@@ -275,6 +282,7 @@ public class WayFinder_Controller implements Initializable {
                 ta.setWrapText(true);
                 ta.setPrefWidth(270);
                 ta.setPrefHeight(30);
+                ta.setFocusTraversable(false);
                 ann.add(ta);
             }
             lvAnnouncements.setItems(ann);
@@ -576,6 +584,7 @@ public class WayFinder_Controller implements Initializable {
         }
         qualifier = bubbleSort(qualifier);
         tvBusDetails.setItems(qualifier);
+        tvBusDetails.setFocusTraversable(true);
 
         String ivPath = "sample/res/Terminal Map/GIF/";
         switch (qualifier.get(0).getWingArea()) {
@@ -591,12 +600,8 @@ public class WayFinder_Controller implements Initializable {
         ivPath = ivPath.concat(qualifier.get(0).getBayNumber() + ".gif");
         ivTerminalPath.setImage(new Image(ivPath));
 
-        taNumberOfBusCompanies.setText(qualifier.size() + "");
-        int busNumber = 0;
-        for (Bus bus : qualifier) {
-            busNumber += bus.getBuses();
-        }
-        taNumberOfBuses.setText(busNumber + "");
+        taTravelDistance.setText(municipality.getTravelDistance());
+        taTravelTime.setText(municipality.getTravelTime());
         if (municipality.getFareAircon() == 0) {
             taFareAircon.setText("-");
         } else {

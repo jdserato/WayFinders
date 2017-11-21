@@ -10,17 +10,13 @@ public class Municipality {
     private int fareAircon;
     private Municipality[] encompassingMunicipality;
     private Municipality leftMun, rightMun;
+    private String travelTime, travelDistance;
 
-    public Municipality(String name, int fareOrdinary, int fareAircon, Municipality[] encompassingMunicipality, Municipality leftMun, Municipality rightMun) {
-        this.name = name;
-        this.fareOrdinary = fareOrdinary;
-        this.fareAircon = fareAircon;
-        this.encompassingMunicipality = encompassingMunicipality;
-        this.leftMun = leftMun;
-        this.rightMun = rightMun;
+    public Municipality(String name, int fareOrdinary, int fareAircon, Municipality[] encompassingMunicipality, Municipality leftMun, Municipality rightMun, String travelTime, String travelDistance) {
+        this(name, null, fareOrdinary, fareAircon, encompassingMunicipality, leftMun, rightMun, travelTime, travelDistance);
     }
 
-    public Municipality(String name, Municipality subroute, int fareOrdinary, int fareAircon, Municipality[] encompassingMunicipality, Municipality leftMun, Municipality rightMun) {
+    public Municipality(String name, Municipality subroute, int fareOrdinary, int fareAircon, Municipality[] encompassingMunicipality, Municipality leftMun, Municipality rightMun, String travelTime, String travelDistance) {
         this.name = name;
         this.subroute = subroute;
         this.fareOrdinary = fareOrdinary;
@@ -28,6 +24,8 @@ public class Municipality {
         this.encompassingMunicipality = encompassingMunicipality;
         this.leftMun = leftMun;
         this.rightMun = rightMun;
+        this.travelDistance = travelDistance;
+        this.travelTime = travelTime;
     }
 
     public Municipality getSubroute() {
@@ -44,6 +42,22 @@ public class Municipality {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTravelTime() {
+        return travelTime;
+    }
+
+    public void setTravelTime(String travelTime) {
+        this.travelTime = travelTime;
+    }
+
+    public String getTravelDistance() {
+        return travelDistance;
+    }
+
+    public void setTravelDistance(String travelDistance) {
+        this.travelDistance = travelDistance;
     }
 
     public int getFareOrdinary() {
